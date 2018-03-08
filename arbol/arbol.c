@@ -3,9 +3,8 @@
 #include "arbol.h"
 #include "../Cola/cola.h"
 
-//
+
 // Reserva de memoria para un nuevo nodo de árbol binario
-//
 Arbol creaNodo(tipoInfo info)
 { tipoNodo * nuevo;
 
@@ -70,35 +69,6 @@ void amplitud(Arbol raiz)
     }
 }
 
-/*
-void representacionArbolBinario(Arbol raiz)
-{
-    Cola c;
-    Arbol nodo;
-    int i=0;
-    colaCreaVacia(&c);
-
-    nodo = raiz;
-    c.frente = NULL;
-    c.fondo = NULL;
-
-    if (raiz != NULL) 
-        colaInserta(&c,nodo);
-
-    while (!colaVacia(&c))
-    { 
-        nodo = (Arbol) colaSuprime(&c);
-        printf(" %c ", nodo->info);
-       	if( i==0 || i == 2 || i==6 || i==14){
-    		printf (" \n ");
-    	}
-
-        if (nodo->izq != NULL) colaInserta(&c,nodo->izq);
-        if (nodo->der != NULL) colaInserta(&c,nodo->der);
-        i++;
-    }
-}*/
-
 //
 // Operaciones Arbol Binario
 //
@@ -106,18 +76,18 @@ void representacionArbolBinario(Arbol raiz)
 int altura(Arbol raiz)
 {
 
-    if (raiz == NULL) 
-         return -1;
+	if (raiz == NULL) 
+		return -1;
 
-    int alturaIzq, alturaDer;
+	int alturaIzq, alturaDer;
 
 	alturaIzq = altura(raiz->izq);
 	alturaDer = altura(raiz->der);
 
 	if ( alturaIzq > alturaDer ) 
 		return alturaIzq + 1;
-
-	return alturaDer + 1;
+	else
+		return alturaDer + 1;
 }
 
 int numNodos(Arbol raiz)
@@ -125,8 +95,6 @@ int numNodos(Arbol raiz)
 
 	if(raiz == NULL)
 		return 0;
-
-	int nodosIzq, nodosDer;
 
 	int nodosIzq = numNodos(raiz->izq);
 	int nodosDer = numNodos(raiz->der);
@@ -226,11 +194,11 @@ Arbol buscarMax(Arbol raiz)
 	nodoIzq = buscarMax(raiz->izq);
 	nodoDer = buscarMax(raiz->der);
 
-	if( raiz->info < nodoIzq->info ){
+	if( nodoIzq!=NULL && raiz->info < nodoIzq->info ){
 		raiz = nodoIzq;
 	}
 
-	if( raiz->info < nodoDer->info ){
+	if( nodoDer!=NULL && raiz->info < nodoDer->info ){
 		raiz = nodoDer;
 	}
 
@@ -248,11 +216,11 @@ Arbol buscarMin(Arbol raiz)
 	nodoIzq = buscarMax(raiz->izq);
 	nodoDer = buscarMax(raiz->der);
 
-	if( raiz->info > nodoIzq->info ){
+	if( nodoIzq!=NULL && raiz->info > nodoIzq->info ){
 		raiz = nodoIzq;
 	}
 
-	if( raiz->info > nodoDer->info ){
+	if( nodoDer!=NULL && raiz->info > nodoDer->info ){
 		raiz = nodoDer;
 	}
 
@@ -264,15 +232,15 @@ int similares(Arbol r1,Arbol r2)
 	if(r1 == NULL && r2 == NULL)
 		return 1;
 
-	if ((r1 != NULL && r2 != NULL)){
+	if(r1 != NULL && r2 != NULL){
 		return (
-				equivalentes (r1,r2) &&
-				equivalentes (r1,r2)
-			);
+				similares (r1,r2) &&
+				similares (r1,r2));
 	}
 
 	return 0;
 }
+
 int equivalentes(Arbol r1,Arbol r2)
 {
 	if(r1 == NULL && r2 == NULL)
@@ -291,13 +259,10 @@ int equivalentes(Arbol r1,Arbol r2)
 
 Arbol especular(Arbol raiz)
 {
-
 	if(raiz == NULL)
 		return NULL;
 
-	Arbol nuevoNodo;
-
-	nuevoNodo = creaNodo(raiz->info);
+	Arbol nuevoNodo = creaNodo(raiz->info);
 
 	nuevoNodo->der = especular(raiz->izq);
 	nuevoNodo->izq = especular(raiz->der);

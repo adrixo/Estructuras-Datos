@@ -1,4 +1,3 @@
-// Adrián Valera roman 17 - 2 - 2018
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,7 +6,6 @@
 
 int pilaCreaVacia(Pila *p)
 {
-
 	*p = (Pila) malloc(sizeof(*p));
 
 	if(*p == NULL){

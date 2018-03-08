@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include "monticulo.h"
 
-/* Ejercicio 1 */
-
 void iniciaMonticulo(Monticulo *m){
 	m->tamanno = 0;
 }
@@ -26,7 +24,6 @@ int insertar(tipoElemento x, Monticulo *m){
 	
 	return 0;
 }
-
 
 int eliminarMinimo(Monticulo *m, tipoElemento *minimo){
 	
@@ -66,15 +63,13 @@ int esMonticulo(Monticulo m){
 	return 1
 }
 
-/* Funciones auxiliares que conviene implementar: las dos estrategias de filtrado en las 
-   que se basan todos los algoritmos que manejan montículos */
-
 void filtradoDescendente(Monticulo *m, int i){
 
 	int hijo, finFiltrado = 0;
-	tipoElemento ultimo = m->elemento[m->tamanno];
+	tipoElemento ultimo = m->elemento[i];
 
 	while(2*i <= m->tamanno && !finFiltrado){
+
 		hijo = 2*i;
 		
 		if(	hijo+1 <= m->tamanno && 
@@ -95,17 +90,15 @@ void filtradoDescendente(Monticulo *m, int i){
 }
 
 void filtradoAscendente(Monticulo *m, int i){
-	tipoElemento x = m->elemento[i];
+	tipoElemento ultimo = m->elemento[i];
 	
-	while(i>1 m->elemento[i/2].clave > x.clave){
+	while(i>1 m->elemento[i/2].clave > ultimo.clave){
 		m->elemento[i] = m->elemento[i/2];
 		i=i/2;
 	}
 	
-	m->elemento[i] = x;
+	m->elemento[i] = ultimo;
 }
-
-/* Operación crearMonticulo la utilizaremos en ejercicio 2 y en tema de grafos */ 
 
 void crearMonticulo(Monticulo *m){
 	int i;
@@ -115,22 +108,22 @@ void crearMonticulo(Monticulo *m){
 	}
 }
 
+void heapsort(Monticulo *m){
+	int tam, i;
+	tipoElemento e;
 
-void heapsort(int * T, int n){
-	int i, min;
-	Monticulo m;
+	tam = m->tamanno;
 
-	crearMonticulo(&m);
-	iniciaMonticulo(&m);
+	crearMonticulo(m);
 
-	for(i=0; i<n; i++){
-		insertar(&m, T[i]);
+	for(i=1; i<=tam; i++){
+		if(eliminarMinimo(m, &e))
+			fprintf(stderr, "Error al eliminar mínimo");
+		m->elemento[m->tamanno+1] = e;
 	}
-	i=0;
 
-	while(!vacioMonticulo(&m)){
-		min = eliminarMinimo (&m);
-		T[i] = min;
-		i++;
-	}
+	m->tamanno = tam;
+
 }
+
+

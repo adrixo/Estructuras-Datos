@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "arbol/arbol.h"
+#include "arbol.h"
 
 int main(void)
 { Arbol varArbol;
 
-/* Creación arbol ejemplo de las transparencias de recorridos */
+/* Creación arbol */
   varArbol = creaNodo('A');
   varArbol->izq=creaNodo('B');
   varArbol->der = creaNodo('C');
@@ -29,11 +29,6 @@ int main(void)
   printf("Recorrido en AMPLITUD: ");
   amplitud(varArbol);
   printf("\n");
-
-/* Comenzar a implementar y probar las funciones del ejercicio 2 ... y segunda parte del ejercicio 3 */
-
-
-
 
   return 1;
 }

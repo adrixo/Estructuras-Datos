@@ -1,8 +1,7 @@
-// Adrián Valera roman 17 - 2 - 2018
-
 #ifndef __COLA_H
 #define __COLA_H
 
+//Para permitir typedef
 #include "../arbol/arbol.h"
 
 typedef tipoNodo* tipoElemento;
@@ -17,10 +16,6 @@ typedef struct {
 } Cola;
 
 int colaCreaVacia(Cola *c);
-
-// En vacía no sería necesario el paso por referencia
-// pero por mantener la misma interfaz con la implementación
-// de matrices
 int colaVacia(Cola *c);
 
 int colaInsertaC(Cola *c, tipoElemento elemento);

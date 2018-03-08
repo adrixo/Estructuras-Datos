@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "arbol/arbol.h"
-#include "arbol/genArbol.h"
+#include "arbol.h"
+#include "genArbol.h"
 
 int main(void)
 { Arbol arbol;
@@ -72,7 +72,7 @@ int main(void)
   postOrden(arbol);
   printf("\n");
 
-/* Aplicar a este arbol las funciones del ejercicio 2 */
+/* comprobación operaciones */
 
   return 1;
 }
