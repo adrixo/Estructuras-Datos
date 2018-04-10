@@ -13,13 +13,16 @@ testMonticulo:	monticulo/testMonticulo.c monticulo.o
 testAlgoritmoHeapsortMonticulos:	monticulo/testAlgoritmoHeapsort.c monticulo.o
 	gcc -g monticulo/testAlgoritmoHeapsort.c monticulo.o -o testAlgoritmoHeapsort.TAD
 
-	#Conjuntos Disjuntos conjuntos/
+#Conjuntos Disjuntos
 cMatrices: conjuntos/prueba.c conjuntos/conjuntosMatrices/conjuntos.o
 	gcc -g conjuntos/prueba.c -DMATRICES conjuntos/conjuntosMatrices/conjuntos.o -o cMatrices
 cListas: conjuntos/prueba.c conjuntos/conjuntosListas/conjuntos.o
 	gcc -g conjuntos/prueba.c -DLISTAS conjuntos/conjuntosListas/conjuntos.o -o cListas
 cArboles: conjuntos/prueba.c conjuntos/conjuntosArboles/conjuntos.o
 	gcc -g conjuntos/prueba.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o cArboles
+
+#grafos
+#
 
 #####Datos
 arbol.o: arbol/arbol.h arbol/arbol.c
@@ -47,6 +50,11 @@ conjuntos/conjuntosListas/conjuntos.o: conjuntos/conjuntosListas/conjuntos.c con
 conjuntos/conjuntosA/conjuntos.o: conjuntos/conjuntosArboles/conjuntos.c conjuntos/conjuntosArboles/conjuntos.h
 	gcc -c -g conjuntos/conjuntosArboles/conjuntos.c -o conjuntos/conjuntosArboles/conjuntos.o
 
+#Grafos
+Grafos/grafos.o: Grafos/grafos.c Grafos/grafos.h
+	gcc -g -c Grafos/grafos.c
+Grafos/cola.o: Grafos/cola.c Grafos/cola.h
+	gcc -g -c Grafos/cola.c
 
 limpiar:
 	rm *.o *.TAD
