@@ -5,8 +5,8 @@
 
 
 // Reserva de memoria para un nuevo nodo de árbol binario
-Arbol creaNodo(tipoInfo info)
-{ tipoNodo * nuevo;
+Arbol creaNodo(tipoInfo info) {
+  tipoNodo * nuevo;
 
   //   nuevo =(tipoNodo *)calloc(1, sizeof(tipoNodo));
   if ((nuevo =(tipoNodo *)malloc(sizeof(tipoNodo)))==NULL)
@@ -19,7 +19,7 @@ Arbol creaNodo(tipoInfo info)
    }
 }
 
-// 
+//
 // Recorridos en profundidad "recursivos"
 //
 void preOrden(Arbol raiz)
@@ -50,18 +50,18 @@ void amplitud(Arbol raiz)
 {
     Cola c;
     Arbol nodo;
-    
+
     colaCreaVacia(&c);
 
     nodo = raiz;
     c.frente = NULL;
     c.fondo = NULL;
 
-    if (raiz != NULL) 
+    if (raiz != NULL)
         colaInserta(&c,nodo);
 
     while (!colaVacia(&c))
-    { 
+    {
         nodo = (Arbol) colaSuprime(&c);
         printf(" %c ", nodo->info);
         if (nodo->izq != NULL) colaInserta(&c,nodo->izq);
@@ -76,15 +76,14 @@ void amplitud(Arbol raiz)
 int altura(Arbol raiz)
 {
 
-	if (raiz == NULL) 
+	if (raiz == NULL)
 		return -1;
 
 	int alturaIzq, alturaDer;
-
-	alturaIzq = altura(raiz->izq);
+  alturaIzq = altura(raiz->izq);
 	alturaDer = altura(raiz->der);
 
-	if ( alturaIzq > alturaDer ) 
+	if ( alturaIzq > alturaDer )
 		return alturaIzq + 1;
 	else
 		return alturaDer + 1;
@@ -92,10 +91,6 @@ int altura(Arbol raiz)
 
 int numNodos(Arbol raiz)
 {
-
-	if(raiz == NULL)
-		return 0;
-
 	int nodosIzq = numNodos(raiz->izq);
 	int nodosDer = numNodos(raiz->der);
 
@@ -118,7 +113,7 @@ int sustiuye(Arbol raiz, tipoInfo x, tipoInfo y)
 {
 	if(raiz == NULL)
 		return 0;
-	
+
 	int cambios = 0;
 
 	cambios += sustiuye(raiz->izq, x, y);
@@ -154,7 +149,7 @@ int numNodosInternos(Arbol raiz)
 
 	if(raiz == NULL)
 		return 0;
-	
+
 	int total = 0;
 
 	total += numNodosInternos(raiz->izq);
@@ -171,12 +166,12 @@ int numHijoUnico(Arbol raiz)
 	if(raiz == NULL)
 		return 0;
 
-	int total = 0;	
+	int total = 0;
 
 	total += numHijoUnico(raiz->izq);
 	total += numHijoUnico(raiz->der);
 
-	if(	raiz->izq != NULL && raiz->der == NULL || 
+	if(	raiz->izq != NULL && raiz->der == NULL ||
 		raiz->izq == NULL && raiz->der != NULL)
 			return total += 1;
 
@@ -188,17 +183,17 @@ Arbol buscarMax(Arbol raiz)
 
 	if(raiz == NULL)
 		return NULL;
-	
+
 	Arbol nodoIzq, nodoDer;
 
 	nodoIzq = buscarMax(raiz->izq);
 	nodoDer = buscarMax(raiz->der);
 
-	if( nodoIzq!=NULL && raiz->info < nodoIzq->info ){
+	if( nodoIzq !=NULL && raiz->info < nodoIzq->info ){
 		raiz = nodoIzq;
 	}
 
-	if( nodoDer!=NULL && raiz->info < nodoDer->info ){
+	if( nodoDer !=NULL && raiz->info < nodoDer->info ){
 		raiz = nodoDer;
 	}
 
@@ -210,7 +205,7 @@ Arbol buscarMin(Arbol raiz)
 {
 	if(raiz == NULL)
 		return NULL;
-	
+
 	Arbol nodoIzq, nodoDer;
 
 	nodoIzq = buscarMax(raiz->izq);
@@ -269,4 +264,3 @@ Arbol especular(Arbol raiz)
 
 	return nuevoNodo;
 }
-

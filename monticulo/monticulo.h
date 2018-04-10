@@ -15,16 +15,19 @@ typedef struct
 
 //Operaciones
 void crearMonticulo(Monticulo *m);
+
 void iniciaMonticulo(Monticulo *m);
 int vacioMonticulo(Monticulo m);
 int insertar(tipoElemento x, Monticulo *m);
 int eliminarMinimo(Monticulo *m, tipoElemento *minimo);
 
 //control
+int esMonticulo(Monticulo m);
 void decrementarClave(int pos, int cantidad, Monticulo *m);
 void incrementarClave(int pos, int cantidad, Monticulo *m);
-int esMonticulo(Monticulo m);
+//Auxiliares
 void filtradoDescendente(Monticulo *m, int i);
 void filtradoAscendente(Monticulo *m, int i);
 
+//Algoritmos
 void heapsort(Monticulo *m);

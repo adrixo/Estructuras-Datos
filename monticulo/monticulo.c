@@ -60,7 +60,7 @@ int esMonticulo(Monticulo m){
 			return 0;
 		}
 	}
-	return 1
+	return 1;
 }
 
 void filtradoDescendente(Monticulo *m, int i){
@@ -92,7 +92,7 @@ void filtradoDescendente(Monticulo *m, int i){
 void filtradoAscendente(Monticulo *m, int i){
 	tipoElemento ultimo = m->elemento[i];
 	
-	while(i>1 m->elemento[i/2].clave > ultimo.clave){
+	while(i>1 && m->elemento[i/2].clave > ultimo.clave){
 		m->elemento[i] = m->elemento[i/2];
 		i=i/2;
 	}
