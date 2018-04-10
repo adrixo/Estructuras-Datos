@@ -10,7 +10,6 @@ typedef struct tipoCelda {
 	struct tipoCelda * sig;
 	} tipoCelda;
 
-
 typedef struct {
 	tipoCelda * primero , *ultimo;
 	} tipoLista;
@@ -19,14 +18,11 @@ typedef struct {
 typedef tipoLista particion[MAXIMO];
 typedef int tipoConjunto;
 
-// Funciones a implementar
 void crea(particion C);
 tipoElemento buscar(tipoElemento x, particion C);
 void unir(tipoElemento x, tipoElemento y, particion C);
 
-// Funciones proporcionadas
 void verParticion(particion C);
 void verClaseEquivalencia(tipoElemento x,particion P);
 
 #endif
-

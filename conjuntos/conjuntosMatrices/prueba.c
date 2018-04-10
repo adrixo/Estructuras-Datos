@@ -3,16 +3,15 @@
 
 #include "conjuntos.h"
 
-int main()
-{ particion C;
+int main(){
+  particion C;
   int i;
 
 
 crea(C);
-printf("Situación INICIAL: ");
+printf("Situacion INICIAL: ");
 verParticion(C);
 
-// Se forman las siguientes clases de equivalencia haciendo al primer elemento del conjunto su representatne:
 // {7,0,13,15},{2,3,8,12},{11,1,4,6,14},{9,5,10}
 
 
@@ -32,7 +31,7 @@ unir(11,6,C);		// Mejor ...
 unir(5,10,C);		// Mejor ...
 unir(9,5,C);		// Mejor ...
 
-printf("Situación FINAL:   ");
+printf("Situaciï¿½n FINAL:   ");
 
 verParticion(C);
 
@@ -42,7 +41,7 @@ printf("\n\nEl elemento 5 pertenence a la clase de equivalencia con representant
 verClaseEquivalencia(5,C);
 #endif
 
-// ¿Qué operación sería necesaria para relacionar el elemento 12 con el 15?
+// ï¿½Quï¿½ operaciï¿½n serï¿½a necesaria para relacionar el elemento 12 con el 15?
 
 
 }

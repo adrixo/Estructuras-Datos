@@ -1,7 +1,7 @@
 #include "conjuntos.h"
 #include <stdio.h>
 
-/*
+/* Tipos a manejar
 
 typedef int particion[MAXIMO];
 typedef int tipoConjunto;
@@ -17,7 +17,7 @@ void crea(particion C){
 }
 
 tipoElemento buscar(tipoElemento x, particion C){
-	
+
 	if(C[x]=0)
 		return x;
 	else
@@ -35,9 +35,9 @@ void verParticion(particion C)
 { int i;
     printf("\n");
     for (i =0;i<MAXIMO;i++) printf("|%2d",C[i]);
-    printf("| contenido  vector\n");
+    printf("| contenido del vector \n");
     for (i =0;i<MAXIMO;i++) printf("---");
     printf("\n");
     for (i =0;i<MAXIMO;i++) printf(" %2d",i);
-    printf("  índices vector\n\n");
+    printf("  índices\n\n");
 }

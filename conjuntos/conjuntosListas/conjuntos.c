@@ -32,10 +32,10 @@ tipoElemento buscar(tipoElemento x, particion C){
 }
 
 void unir(tipoElemento x, tipoElemento y, particion C){
-	
+
 	tipoElemento claseAUnir = buscar(x,C);
 	tipoElemento claseBase = buscar(x,C);
-	
+
 	if(claseAUnir == claseBase)
 		return;
 
@@ -55,7 +55,7 @@ void verParticion(particion C)
    tipoCelda *aux;
     for (i =0;i<MAXIMO;i++) {
          aux = C[i].primero;
-         if (aux!=NULL)  printf("\n\nClase equivalencia representante %d: ",i);
+         if (aux!=NULL)  printf("\n\nClase de equivalencia representante %d: ",i);
         while (aux!=NULL)
         { printf("%d ",aux->elemento);
          aux=aux->sig;
@@ -63,12 +63,12 @@ void verParticion(particion C)
     }
 }
 
-void verClaseEquivalencia(tipoElemento x,particion C)
-{ int representante;
+void verClaseEquivalencia(tipoElemento x,particion C){
+	int representante;
   tipoCelda *aux;
-  
+
     representante = buscar(x,C);
-    printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x,representante);
+    printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x, representante);
     aux = C[representante].primero;
     while (aux)
         { printf(" %d ",aux->elemento);
@@ -76,5 +76,3 @@ void verClaseEquivalencia(tipoElemento x,particion C)
         }
     printf("\n\n");
 }
-
-
