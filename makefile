@@ -53,8 +53,8 @@ conjuntos/conjuntosA/conjuntos.o: conjuntos/conjuntosArboles/conjuntos.c conjunt
 #Grafos
 Grafos/grafos.o: Grafos/grafos.c Grafos/grafos.h
 	gcc -g -c Grafos/grafos.c
-Grafos/cola.o: Grafos/cola.c Grafos/cola.h
-	gcc -g -c Grafos/cola.c
+Cola/cola.o: Cola/cola.c Cola/cola.h
+	gcc -g -c Cola/cola.c
 
 limpiar:
 	rm *.o *.TAD

@@ -1,0 +1,24 @@
+Secuencia de los nodos en orden: 
+10 es 
+12 necesario 
+13 implementar 
+15 (comprendiendo 
+15 la 
+15 abstracción) 
+15 las 
+20 prácticas 
+25 para 
+30 entender 
+35 la 
+45 teoría 
+Eliminados 0 nodos con clave 5
+Eliminados 4 nodos con clave 15
+Eliminados 1 nodos con clave 35
+Secuencia de los nodos en orden: 
+10 es 
+12 necesario 
+13 implementar 
+20 prácticas 
+25 para 
+30 entender 
+45 teoría 
