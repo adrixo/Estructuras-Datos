@@ -3,7 +3,20 @@
 #include <string.h>
 #include "conjuntos.h"
 
+/*
+typedef int tipoElemento;
 
+typedef struct tipoCelda {
+	tipoElemento elemento;
+	struct tipoCelda * sig;
+	} tipoCelda;
+
+typedef struct {
+	tipoCelda * primero , *ultimo;
+	} tipoLista;
+*/
+
+//cada clase de equivalencia es una lista enlazada que contiene sus elementos
 
 void crea(particion C){
 	int i;
@@ -51,16 +64,19 @@ void unir(tipoElemento x, tipoElemento y, particion C){
 
 //funciones auxiliares
 void verParticion(particion C)
-{ int i;
-   tipoCelda *aux;
-    for (i =0;i<MAXIMO;i++) {
-         aux = C[i].primero;
-         if (aux!=NULL)  printf("\n\nClase de equivalencia representante %d: ",i);
-        while (aux!=NULL)
-        { printf("%d ",aux->elemento);
-         aux=aux->sig;
-        }
-    }
+{
+	int i;
+  tipoCelda *aux;
+  for (i =0;i<MAXIMO;i++) {
+     	aux = C[i].primero;
+      if (aux!=NULL)
+			 	printf("\n\nClase de equivalencia representante %d: ",i);
+      while (aux!=NULL)
+      {
+				printf("%d ",aux->elemento);
+        aux=aux->sig;
+      }
+  }
 }
 
 void verClaseEquivalencia(tipoElemento x,particion C){
@@ -71,7 +87,8 @@ void verClaseEquivalencia(tipoElemento x,particion C){
     printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x, representante);
     aux = C[representante].primero;
     while (aux)
-        { printf(" %d ",aux->elemento);
+        {
+					printf(" %d ",aux->elemento);
           aux=aux->sig;
         }
     printf("\n\n");

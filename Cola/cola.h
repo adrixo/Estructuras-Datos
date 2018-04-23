@@ -2,13 +2,14 @@
 #define __COLA_H
 
 //Para permitir typedef
-#include "../arbol/arbol.h"
+
+#include "../Arbol/arbol.h"
 
 typedef tipoNodo* tipoElemento;
 
-typedef struct tipoCelda { 
-	tipoElemento elemento; 
-	struct tipoCelda * sig; 
+typedef struct tipoCelda {
+	tipoElemento elemento;
+	struct tipoCelda * sig;
 	} tipoCelda;
 
 typedef struct {

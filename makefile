@@ -1,11 +1,13 @@
 
 #Arboles
-ejercicioRecorridosArbol: arbol/ejercicioRecorridos.c arbol.o cola.o
-	gcc -g arbol/ejercicioRecorridos.c arbol.o cola.o -o ejercicioRecorridos.TAD
+ejercicioRecorridosArbol: Arbol/ejercicioRecorridos.c arbol.o cola.o
+	gcc -g Arbol/ejercicioRecorridos.c arbol.o cola.o -o ejercicioRecorridos.TAD
 
-testFuncionamientoArbol: arbol/testFuncionamientoArbol.c arbol.o genArbol.o cola.o
-	gcc -g arbol/testFuncionamientoArbol.c arbol.o genArbol.o cola.o -o testFuncionamientoArbol.TAD
+testFuncionamientoArbol: Arbol/testFuncionamientoArbol.c arbol.o genArbol.o cola.o
+	gcc -g Arbol/testFuncionamientoArbol.c arbol.o genArbol.o cola.o -o testFuncionamientoArbol.TAD
 
+testFuncionesArbol: Arbol/testFuncionesArbol.c arbol.o genArbol.o cola.o pila.o
+	gcc -g Arbol/testFuncionesArbol.c arbol.o genArbol.o Cola.o -o testFuncionesArbol.TAD
 #Monticulos
 testMonticulo:	monticulo/testMonticulo.c monticulo.o
 	gcc -g monticulo/testMonticulo.c monticulo.o -o testMonticulo.TAD
@@ -25,17 +27,17 @@ cArboles: conjuntos/prueba.c conjuntos/conjuntosArboles/conjuntos.o
 #
 
 #####Datos
-arbol.o: arbol/arbol.h arbol/arbol.c
-	gcc -c -g arbol/arbol.c
+arbol.o: Arbol/arbol.h Arbol/arbol.c
+	gcc -c -g Arbol/arbol.c
 
-genArbol.o: arbol/genArbol.h arbol/genArbol.c arbol/arbol.h Pila/pila.c
-	gcc -c -g arbol/genArbol.c
+genArbol.o: Arbol/genArbol.h Arbol/genArbol.c Arbol/arbol.h Pila/pila.c
+	gcc -c -g Arbol/genArbol.c
 
 #cola/pila
-cola.o: Cola/cola.h Cola/cola.c arbol/arbol.h
+cola.o: Cola/cola.h Cola/cola.c Arbol/arbol.h
 	gcc -g -c Cola/cola.c
 
-pila.o: Pila/pila.c Pila/pila.h arbol/arbol.h
+pila.o: Pila/pila.c Pila/pila.h Arbol/arbol.h
 	gcc -c Pila/pila.c
 
 #monticulo

@@ -11,14 +11,14 @@ int colaCreaVacia(Cola *c)
 
    	if(c==NULL){
 		printf("Fallo al crear cola.\n");
-    		return -1;
+    		return 1;
 	} else {
 
 		c->frente = NULL;
 		c->fondo = NULL;
 
 		return 0;
-	}    
+	}
 }
 
 int colaVacia(Cola *c)
@@ -37,7 +37,7 @@ int colaInserta(Cola *c,tipoElemento elemento)
     nuevaCelda = (tipoCelda *)malloc(sizeof(tipoCelda));
     if(nuevaCelda == NULL){
 		printf("Error crear nodo cola.\n");
-    	return -1;
+    	return 1;
 	}
     nuevaCelda->elemento = elemento;
     nuevaCelda->sig = NULL;
@@ -48,7 +48,7 @@ int colaInserta(Cola *c,tipoElemento elemento)
 		c->fondo->sig = nuevaCelda;
 		c->fondo = nuevaCelda;
 	}
-	
+
 	return 0;
 }
 
@@ -57,10 +57,10 @@ tipoElemento colaSuprime(Cola *c)
 
 	tipoCelda * temp;
 	tipoElemento elementoSuprimido;
-	
+
 	if(colaVacia(c)){
 		printf("Fallo al suprimir en cola.\n");
-		return -1;
+		return 1;
 	}
 
 	temp = c->frente;
@@ -73,5 +73,5 @@ tipoElemento colaSuprime(Cola *c)
 
 	free(temp);
 	return elementoSuprimido;
-	
+
 }

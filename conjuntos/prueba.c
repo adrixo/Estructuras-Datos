@@ -16,7 +16,7 @@ int main(){
   int i;
 
   crea(C);
-  printf("Situaci�n INICIAL: ");
+  printf("Situacion INICIAL: ");
   verParticion(C);
 
 // {7,0,13,15},{2,3,8,12},{11,1,4,6,14},{9,5,10}
