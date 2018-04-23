@@ -232,8 +232,8 @@ int similares(Arbol r1,Arbol r2)
 
 	if(r1 != NULL && r2 != NULL){
 		return (
-				similares (r1,r2) &&
-				similares (r1,r2));
+				similares (r1->izq,r2->izq) &&
+				similares (r1->der,r2->der));
 	}
 
 	return 0;
@@ -247,8 +247,8 @@ int equivalentes(Arbol r1,Arbol r2)
 	if ((r1 != NULL && r2 != NULL)){
 		return (
 				r1->info == r2->info &&
-				equivalentes (r1,r2) &&
-				equivalentes (r1,r2)
+				equivalentes (r1->izq,r2->izq) &&
+				equivalentes (r1->der,r2->der)
 			);
 	}
 
