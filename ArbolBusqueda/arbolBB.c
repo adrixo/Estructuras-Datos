@@ -31,14 +31,14 @@ int insertar(tipoArbolBB *raiz,tipoClave clave)
 
 int buscar(tipoClave clave,tipoArbolBB raiz, tipoNodo **nodo)
 {
-  if (raiz==NULL)
-    return 0;
-  else if (clave == raiz->clave)
-    nodo = raiz;
-  else if (clave < raiz->clave)
-    buscar(clave,raiz->izq,nodo);
+	if (raiz==NULL)
+		return NULL;
+	else if (clave == raiz->clave)
+		nodo = raiz;
+	else if (clave < raiz->clave)
+		buscar(clave,raiz->izq,nodo);
 	else if (clave > raiz->clave)
-    buscar(clave,raiz->der,nodo);
+		buscar(clave,raiz->der,nodo);
 }
 
 #endif

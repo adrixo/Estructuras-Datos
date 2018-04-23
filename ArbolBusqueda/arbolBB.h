@@ -4,12 +4,8 @@
 
 	typedef int tipoClave;
 
-	#ifdef EJERCICIO1
-		typedef int tipoInfo;
-	#endif
-	#ifdef EJERCICIO3
-		typedef char tipoInfo[20];
-	#endif
+
+	typedef char tipoInfo[20];
 
 	typedef struct tipoNodo {
 	        tipoClave clave;
