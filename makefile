@@ -1,13 +1,14 @@
 
 #Arboles
-ejercicioRecorridosArbol: Arbol/ejercicioRecorridos.c arbol.o cola.o
-	gcc -g Arbol/ejercicioRecorridos.c arbol.o cola.o -o ejercicioRecorridos.TAD
+ejercicioRecorridosArbol: Arbol/ejercicioRecorridos.c arbol.o colaArbol.o
+	gcc -g Arbol/ejercicioRecorridos.c arbol.o colaArbol.o -o ejercicioRecorridos.TAD
 
-testFuncionamientoArbol: Arbol/testFuncionamientoArbol.c arbol.o genArbol.o cola.o
-	gcc -g Arbol/testFuncionamientoArbol.c arbol.o genArbol.o cola.o -o testFuncionamientoArbol.TAD
+testFuncionamientoArbol: Arbol/testFuncionamientoArbol.c arbol.o genArbol.o colaArbol.o
+	gcc -g Arbol/testFuncionamientoArbol.c arbol.o genArbol.o colaArbol.o -o testFuncionamientoArbol.TAD
 
-testFuncionesArbol: Arbol/testFuncionesArbol.c arbol.o genArbol.o cola.o pila.o
-	gcc -g Arbol/testFuncionesArbol.c arbol.o genArbol.o Cola.o -o testFuncionesArbol.TAD
+testFuncionesArbol: Arbol/testFuncionesArbol.c arbol.o genArbol.o colaArbol.o pila.o
+	gcc -g Arbol/testFuncionesArbol.c arbol.o genArbol.o colaArbol.o -o testFuncionesArbol.TAD
+
 #Monticulos
 testMonticulo:	monticulo/testMonticulo.c monticulo.o
 	gcc -g monticulo/testMonticulo.c monticulo.o -o testMonticulo.TAD
@@ -24,9 +25,10 @@ cArboles: conjuntos/prueba.c conjuntos/conjuntosArboles/conjuntos.o
 	gcc -g conjuntos/prueba.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o cArboles
 
 #grafos
-#
+ej1: Grafos/ejercicio1.c Grafos/grafos.o cola.o
+	gcc -g Grafos/ejercicio1.c Grafos/grafos.c cola.o -o ej2
 
-#####Datos
+#####Estructuras de datos
 arbol.o: Arbol/arbol.h Arbol/arbol.c
 	gcc -c -g Arbol/arbol.c
 
@@ -34,8 +36,10 @@ genArbol.o: Arbol/genArbol.h Arbol/genArbol.c Arbol/arbol.h Pila/pila.c
 	gcc -c -g Arbol/genArbol.c
 
 #cola/pila
-cola.o: Cola/cola.h Cola/cola.c Arbol/arbol.h
+cola.o: Cola/cola.h Cola/cola.c
 	gcc -g -c Cola/cola.c
+colaArbol.o: Cola/colaArbol.h Cola/colaArbol.c
+	gcc -g -c Cola/colaArbol.c
 
 pila.o: Pila/pila.c Pila/pila.h Arbol/arbol.h
 	gcc -c Pila/pila.c
@@ -55,8 +59,6 @@ conjuntos/conjuntosA/conjuntos.o: conjuntos/conjuntosArboles/conjuntos.c conjunt
 #Grafos
 Grafos/grafos.o: Grafos/grafos.c Grafos/grafos.h
 	gcc -g -c Grafos/grafos.c
-Cola/cola.o: Cola/cola.c Cola/cola.h
-	gcc -g -c Cola/cola.c
 
 limpiar:
 	rm *.o *.TAD

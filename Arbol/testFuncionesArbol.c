@@ -3,7 +3,7 @@
 #include "arbol.h"
 #include "genArbol.h"
 #include "pila.h"
-#include "cola.h"
+#include "colaArbol.h"
 
 void presionaTecla();
 
@@ -35,7 +35,7 @@ int main(void)
   printf("\nINTRODUZCA EL ELEMENTO QUE DESEA SUSTITUIR EN EL ARBOL: ");
   scanf("%c",&elementoIn);
   printf("\n3) EL NODO (%c) SERA SUSTITUIDO POR @ \n", elementoIn);
-  sustiuye(arbol, elementoIn, '@');
+  sustituye(arbol, elementoIn, '@');
   printf("\nRECORRIDO EN ORDEN ARBOL BINARIO: ");
   enOrden(arbol);
   puts("");

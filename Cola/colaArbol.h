@@ -1,7 +1,8 @@
 #ifndef __COLA_H
 #define __COLA_H
 
-typedef int tipoElemento;
+#include "../Arbol/arbol.h"
+typedef tipoNodo* tipoElemento;
 
 typedef struct tipoCelda {
 	tipoElemento elemento;

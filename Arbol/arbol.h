@@ -26,7 +26,7 @@ int numNodos(Arbol raiz);
 //Operaciones
 Arbol creaNodo(tipoInfo info);
 Arbol anula(Arbol raiz);
-int sustiuye(Arbol raiz, tipoInfo x, tipoInfo y);
+int sustituye(Arbol raiz, tipoInfo x, tipoInfo y);
 
 //Busqueda
 Arbol buscarMax(Arbol raiz);

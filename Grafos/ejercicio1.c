@@ -7,9 +7,8 @@
 tipoGrafo *creaGrafoT28();
 
 
-int main(void)
-{ tipoGrafo *gT28;
-  
+int main(void){
+  tipoGrafo *gT28;
 
 	gT28 = creaGrafoT28();
 	verGrafo(gT28);
@@ -21,7 +20,7 @@ int main(void)
   	printf("\nProfundidad: ");
   	profundidadMejorado(6,gT28);
 	//iniciar(gT28);
- 	printf("\nAmplitud : ");
+ 	printf("\nAmplitud : "); 
  	amplitud(1,gT28);
 	verGrafo(gT28);
 
@@ -105,4 +104,3 @@ tipoGrafo *creaGrafoT28()
 
   return g;
   }
-

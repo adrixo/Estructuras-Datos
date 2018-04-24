@@ -1,22 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "arbol.h"
-#include "../Cola/cola.h"
+#include "../Cola/colaArbol.h"
 
 
 // Reserva de memoria para un nuevo nodo de árbol binario
 Arbol creaNodo(tipoInfo info) {
   tipoNodo * nuevo;
 
-  //   nuevo =(tipoNodo *)calloc(1, sizeof(tipoNodo));
   if ((nuevo =(tipoNodo *)malloc(sizeof(tipoNodo)))==NULL)
-	return NULL;
-  else
-  { 	nuevo->info=info;
-    	nuevo->izq=NULL;
-    	nuevo->der=NULL;
-    	return nuevo;
-   }
+	 return NULL;
+
+  nuevo->info=info;
+  nuevo->izq=NULL;
+  nuevo->der=NULL;
+  return nuevo;
+
 }
 
 //
@@ -24,8 +23,8 @@ Arbol creaNodo(tipoInfo info) {
 //
 void preOrden(Arbol raiz)
 {
-  if (raiz!=NULL)
-  { printf(" %c ",raiz->info);
+  if (raiz!=NULL){
+    printf(" %c ",raiz->info);
     preOrden(raiz->izq);
     preOrden(raiz->der);
   }
@@ -33,8 +32,8 @@ void preOrden(Arbol raiz)
 
 void enOrden(Arbol raiz)
 {
-  if (raiz!=NULL)
-  { enOrden(raiz->izq);
+  if (raiz!=NULL){
+    enOrden(raiz->izq);
     printf(" %c ",raiz->info);
     enOrden(raiz->der);
   }
@@ -43,7 +42,8 @@ void enOrden(Arbol raiz)
 void postOrden(Arbol raiz)
 {
   if (raiz!=NULL)
-  { postOrden(raiz->izq);
+  {
+    postOrden(raiz->izq);
     postOrden(raiz->der);
     printf(" %c ",raiz->info);
   }
@@ -63,27 +63,29 @@ void amplitud(Arbol raiz)
     if (raiz != NULL)
         colaInserta(&c,nodo);
 
-    while (!colaVacia(&c))
-    {
+    while (!colaVacia(&c)){
         nodo = (Arbol) colaSuprime(&c);
         printf(" %c ", nodo->info);
-        if (nodo->izq != NULL) colaInserta(&c,nodo->izq);
-        if (nodo->der != NULL) colaInserta(&c,nodo->der);
+
+        if (nodo->izq != NULL)
+          colaInserta(&c,nodo->izq);
+
+        if (nodo->der != NULL)
+          colaInserta(&c,nodo->der);
     }
 }
 
 //
 // Operaciones Arbol Binario
 //
-
+// Devuelve la altura del arbol
 int altura(Arbol raiz)
 {
-
+	int alturaIzq, alturaDer;
 	if (raiz == NULL)
 		return -1;
 
-	int alturaIzq, alturaDer;
-  alturaIzq = altura(raiz->izq);
+	alturaIzq = altura(raiz->izq);
 	alturaDer = altura(raiz->der);
 
 	if ( alturaIzq > alturaDer )
@@ -92,14 +94,16 @@ int altura(Arbol raiz)
 		return alturaDer + 1;
 }
 
+//Indica el nº de nodos del arbol
 int numNodos(Arbol raiz)
 {
-	int nodosIzq = numNodos(raiz->izq);
-	int nodosDer = numNodos(raiz->der);
+  if(raiz==NULL)
+    return 0;
 
-	return nodosIzq + nodosDer + 1;
+	return numNodos(raiz->izq) + numNodos(raiz->der) + 1;
 }
 
+//Borra el arbol pasado como parámetro
 Arbol anula(Arbol raiz)
 {
 	if(raiz == NULL)
@@ -112,15 +116,16 @@ Arbol anula(Arbol raiz)
 	return NULL;
 }
 
-int sustiuye(Arbol raiz, tipoInfo x, tipoInfo y)
+//Sustituye  el valor x por y
+int sustituye(Arbol raiz, tipoInfo x, tipoInfo y)
 {
+	int cambios = 0;
+
 	if(raiz == NULL)
 		return 0;
 
-	int cambios = 0;
-
-	cambios += sustiuye(raiz->izq, x, y);
-	cambios += sustiuye(raiz->der, x, y);
+	cambios += sustituye(raiz->izq, x, y);
+	cambios += sustituye(raiz->der, x, y);
 
 	if(raiz->info == x)
 	{
@@ -131,15 +136,16 @@ int sustiuye(Arbol raiz, tipoInfo x, tipoInfo y)
 	return cambios;
 }
 
+//Indica el nº de nodos que son hoja
 int numNodosHoja(Arbol raiz)
 {
+	int total = 0;
+
 	if(raiz == NULL)
 		return 0;
 
 	if(raiz->izq == NULL && raiz->der == NULL)
 		return 1;
-
-	int total = 0;
 
 	total += numNodosHoja(raiz->izq);
 	total += numNodosHoja(raiz->der);
@@ -147,13 +153,13 @@ int numNodosHoja(Arbol raiz)
 	return total;
 }
 
+//Te muestra el nº de nodos internos
 int numNodosInternos(Arbol raiz)
 {
+	int total = 0;
 
 	if(raiz == NULL)
 		return 0;
-
-	int total = 0;
 
 	total += numNodosInternos(raiz->izq);
 	total += numNodosInternos(raiz->der);
@@ -164,12 +170,13 @@ int numNodosInternos(Arbol raiz)
 	return total;
 }
 
+//Indica el nº de hijos únicos
 int numHijoUnico(Arbol raiz)
 {
+	int total = 0;
+
 	if(raiz == NULL)
 		return 0;
-
-	int total = 0;
 
 	total += numHijoUnico(raiz->izq);
 	total += numHijoUnico(raiz->der);
@@ -181,13 +188,13 @@ int numHijoUnico(Arbol raiz)
 	return total;
 }
 
+//Indica el elemento máximo
 Arbol buscarMax(Arbol raiz)
 {
+	Arbol nodoIzq, nodoDer;
 
 	if(raiz == NULL)
 		return NULL;
-
-	Arbol nodoIzq, nodoDer;
 
 	nodoIzq = buscarMax(raiz->izq);
 	nodoDer = buscarMax(raiz->der);
@@ -204,12 +211,13 @@ Arbol buscarMax(Arbol raiz)
 
 }
 
+//Indica el elemento mínimo
 Arbol buscarMin(Arbol raiz)
 {
+	Arbol nodoIzq, nodoDer;
+
 	if(raiz == NULL)
 		return NULL;
-
-	Arbol nodoIzq, nodoDer;
 
 	nodoIzq = buscarMax(raiz->izq);
 	nodoDer = buscarMax(raiz->der);
@@ -225,6 +233,7 @@ Arbol buscarMin(Arbol raiz)
 	return raiz;
 }
 
+//Comprueba si dos arboles tienen la misma estructura
 int similares(Arbol r1,Arbol r2)
 {
 	if(r1 == NULL && r2 == NULL)
@@ -232,13 +241,14 @@ int similares(Arbol r1,Arbol r2)
 
 	if(r1 != NULL && r2 != NULL){
 		return (
-				similares (r1,r2) &&
-				similares (r1,r2));
+				similares (r1->izq,r2->der) &&
+				similares (r1->izq,r2->der));
 	}
 
 	return 0;
 }
 
+//comprueba si dos arboles son iguales en estructura y contenido
 int equivalentes(Arbol r1,Arbol r2)
 {
 	if(r1 == NULL && r2 == NULL)
@@ -247,14 +257,15 @@ int equivalentes(Arbol r1,Arbol r2)
 	if ((r1 != NULL && r2 != NULL)){
 		return (
 				r1->info == r2->info &&
-				equivalentes (r1,r2) &&
-				equivalentes (r1,r2)
+				equivalentes (r1->izq,r2->der) &&
+				equivalentes (r1->izq,r2->der)
 			);
 	}
 
 	return 0;
 }
 
+//Devuelve puntero a un arbol clon del arbol pasado como argumento
 Arbol especular(Arbol raiz)
 {
 	if(raiz == NULL)

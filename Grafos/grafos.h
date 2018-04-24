@@ -1,25 +1,19 @@
-/*
- * grafos.h
- *
- *  Created on: 21/04/2014
- *      Author: MJ Polo
- */
 #ifndef GRAFOS_H
 #define GRAFOS_H
 
   #define N 10
   #define INF 999999
 
-  typedef struct tagarco
-  { int v;
+  typedef struct tagarco{
+    int v;
     int peso;
     struct tagarco *sig;
   } arco;
 
   typedef arco *pArco;
 
-  typedef struct
-  { int alcanzado;
+  typedef struct{
+    int alcanzado;
     int gradoEntrada;
     int ordenTop;
     int distancia;
