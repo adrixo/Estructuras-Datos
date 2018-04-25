@@ -1,5 +1,5 @@
 // Adrián Valera roman 17 - 2 - 2018
-
+/*Cola preparada para el manejo de árboles/nodos */
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>

@@ -17,18 +17,16 @@ int main(void)
   varArbol->der->izq=creaNodo('F');
   varArbol->der->der=creaNodo('G');
 
-/* Aplicación de recorridos al arbol ejemplo */
-
-  printf("Recorrido en PRE_ORDEN: ");
+  printf("Recorrido PRE_ORDEN:\t");
   preOrden(varArbol);
   printf("\n");
-  printf("Recorrido en ORDEN: ");
+  printf("Recorrido en ORDEN:\t");
   enOrden(varArbol);
   printf("\n");
-  printf("Recorrido en POST_ORDEN: ");
+  printf("Recorrido POST_ORDEN:\t");
   postOrden(varArbol);
   printf("\n");
-  printf("Recorrido en AMPLITUD: ");
+  printf("Recorrido en AMPLITUD:\t");
   amplitud(varArbol);
   printf("\n");
 

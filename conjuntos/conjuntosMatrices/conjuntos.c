@@ -8,7 +8,7 @@ typedef int tipoConjunto;
 typedef int tipoElemento;
 */
 
-//Cada celda almacena el representante de su clase de equivalencia
+/* Cada celda almacena el representante de su clase de equivalencia */
 void crea(particion C){
 	int i;
 
@@ -30,9 +30,6 @@ void unir(tipoElemento x, tipoElemento y, particion C){
 	tipoElemento aux = buscar(x,C);
 	C[aux] = y;
 }
-
-
-
 
 //Funciones auxiliares
 void verParticion(particion C)

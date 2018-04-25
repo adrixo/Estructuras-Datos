@@ -1,4 +1,3 @@
-#define MAXIMO 100
 #include <stdio.h>
 #include <stdlib.h>
 #include "monticulo.h"
@@ -21,17 +20,17 @@ int insertar(tipoElemento x, Monticulo *m){
 	m->tamanno++;
 	m->elemento[m->tamanno] = x;
 	filtradoAscendente(m,m->tamanno);
-	
+
 	return 0;
 }
 
 int eliminarMinimo(Monticulo *m, tipoElemento *minimo){
-	
+
 	if(m->tamanno <= 0) return -1;
 
 	*minimo = m->elemento[1];
 	m->elemento[1] = m->elemento[m->tamanno];
-	
+
 	filtradoDescendente(m,1);
 
 	m->tamanno--;
@@ -71,8 +70,8 @@ void filtradoDescendente(Monticulo *m, int i){
 	while(2*i <= m->tamanno && !finFiltrado){
 
 		hijo = 2*i;
-		
-		if(	hijo+1 <= m->tamanno && 
+
+		if(	hijo+1 <= m->tamanno &&
 			m->elemento[hijo+1].clave < m->elemento[hijo].clave){
 				hijo++;
 		}
@@ -84,25 +83,25 @@ void filtradoDescendente(Monticulo *m, int i){
 			finFiltrado = 1;
 		}
 	}
-	
+
 	m->elemento[i] = ultimo;
 
 }
 
 void filtradoAscendente(Monticulo *m, int i){
 	tipoElemento ultimo = m->elemento[i];
-	
+
 	while(i>1 && m->elemento[i/2].clave > ultimo.clave){
 		m->elemento[i] = m->elemento[i/2];
 		i=i/2;
 	}
-	
+
 	m->elemento[i] = ultimo;
 }
 
 void crearMonticulo(Monticulo *m){
 	int i;
-	
+
 	for(i=m->tamanno/2; i>=1; i--){
 		filtradoDescendente(m,i);
 	}
@@ -125,5 +124,3 @@ void heapsort(Monticulo *m){
 	m->tamanno = tam;
 
 }
-
-

@@ -16,8 +16,7 @@ typedef struct {
 	} tipoLista;
 */
 
-//cada clase de equivalencia es una lista enlazada que contiene sus elementos
-
+/* cada clase de equivalencia es una lista enlazada que contiene sus elementos */
 void crea(particion C){
 	int i;
 
@@ -59,8 +58,6 @@ void unir(tipoElemento x, tipoElemento y, particion C){
 	C[claseAUnir]->ultimo = NULL;
 
 }
-
-
 
 //funciones auxiliares
 void verParticion(particion C)

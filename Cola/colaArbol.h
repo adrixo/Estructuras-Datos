@@ -1,6 +1,8 @@
 #ifndef __COLA_H
 #define __COLA_H
 
+
+/*Cola preparada para el manejo de árboles/nodos */
 #include "../Arbol/arbol.h"
 typedef tipoNodo* tipoElemento;
 

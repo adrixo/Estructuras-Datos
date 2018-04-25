@@ -2,7 +2,7 @@
 #define GRAFOS_H
 
   #define N 10
-  #define INF 999999
+  #define INF 999999 //check later
 
   typedef struct tagarco{
     int v;

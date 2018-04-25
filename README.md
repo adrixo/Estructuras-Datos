@@ -6,3 +6,5 @@ su funcionamiento.
 
 El makefile encontrado en la carpeta principal permite compilar los ejercicios
 desde fuera.
+
+GITIGNORE: *.o y ejecutables *.TAD

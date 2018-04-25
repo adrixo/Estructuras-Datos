@@ -41,8 +41,7 @@ void enOrden(Arbol raiz)
 
 void postOrden(Arbol raiz)
 {
-  if (raiz!=NULL)
-  {
+  if (raiz!=NULL){
     postOrden(raiz->izq);
     postOrden(raiz->der);
     printf(" %c ",raiz->info);

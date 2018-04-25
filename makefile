@@ -18,11 +18,11 @@ testAlgoritmoHeapsortMonticulos:	monticulo/testAlgoritmoHeapsort.c monticulo.o
 
 #Conjuntos Disjuntos
 cMatrices: conjuntos/prueba.c conjuntos/conjuntosMatrices/conjuntos.o
-	gcc -g conjuntos/prueba.c -DMATRICES conjuntos/conjuntosMatrices/conjuntos.o -o cMatrices
+	gcc -g conjuntos/prueba.c -DMATRICES conjuntos/conjuntosMatrices/conjuntos.o -o cMatrices.TAD
 cListas: conjuntos/prueba.c conjuntos/conjuntosListas/conjuntos.o
-	gcc -g conjuntos/prueba.c -DLISTAS conjuntos/conjuntosListas/conjuntos.o -o cListas
+	gcc -g conjuntos/prueba.c -DLISTAS conjuntos/conjuntosListas/conjuntos.o -o cListas.TAD
 cArboles: conjuntos/prueba.c conjuntos/conjuntosArboles/conjuntos.o
-	gcc -g conjuntos/prueba.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o cArboles
+	gcc -g conjuntos/prueba.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o cArboles.TAD
 
 #grafos
 ej1: Grafos/ejercicio1.c Grafos/grafos.o cola.o
