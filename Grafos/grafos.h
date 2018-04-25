@@ -1,31 +1,31 @@
 #ifndef GRAFOS_H
 #define GRAFOS_H
 
-  #define N 10
-  #define INF 999999 //check later
+#define N 10
+#define INF 999999 //check later
 
-  typedef struct tagarco{
-    int v;
-    int peso;
-    struct tagarco *sig;
-  } arco;
+typedef struct tagarco{
+  int v;
+  int peso;
+  struct tagarco *sig;
+} arco;
 
-  typedef arco *pArco;
+typedef arco *pArco;
 
-  typedef struct{
-    int alcanzado;
-    int gradoEntrada;
-    int ordenTop;
-    int distancia;
-    int peso;
-    int anterior;
-    pArco lista;
-  } vertices;
+typedef struct{
+  int alcanzado;
+  int gradoEntrada;
+  int ordenTop;
+  int distancia;
+  int peso;
+  int anterior;
+  pArco lista;
+} vertices;
 
-  typedef struct {
-	vertices directorio[N];
-	int orden;
-  }tipoGrafo;
+typedef struct {
+  vertices directorio[N];
+  int orden;
+}tipoGrafo;
 
 void verGrafo(tipoGrafo *g);
 

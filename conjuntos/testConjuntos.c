@@ -14,13 +14,14 @@
 int main(){
   particion C;
   int i;
+  int aBuscar;
 
   crea(C);
   printf("Situacion INICIAL: ");
   verParticion(C);
 
+// creamos los siguientes conjuntos:
 // {7,0,13,15},{2,3,8,12},{11,1,4,6,14},{9,5,10}
-
   unir(13,15,C);
   unir(7,0,C);
   unir(7,13,C);
@@ -37,14 +38,16 @@ int main(){
   unir(5,10,C);
   unir(9,5,C);
 
+// Mostramos el resultado
   printf("Situacion FINAL:   ");
-
   verParticion(C);
 
-  printf("\n\nEl elemento 5 pertenence a la clase de equivalencia con representante %d\n",buscar(5,C));
+  printf("Comprobar clase del elemento: ");
+  scanf("%d", &aBuscar);
+  printf("\n\nEl elemento %d pertenence a la clase de equivalencia con representante %d\n",aBuscar, buscar(aBuscar,C));
 
   #ifdef LISTAS
-    verClaseEquivalencia(5,C);
+    verClaseEquivalencia(aBuscar,C);
   #endif
 
 }

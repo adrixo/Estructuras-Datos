@@ -17,22 +17,22 @@ typedef struct {
 */
 
 /* cada clase de equivalencia es una lista enlazada que contiene sus elementos */
-void crea(particion C){
+void crea(particion c){
 	int i;
 
 	for(i = 0; i<MAXIMO; i++){
-		C[i]->primero = (tipoCelda *) malloc (1, sizeof(tipoCelda));
-		C[i]->ultimo = C[i]->primero;
-		C[i]->primero->elemento = i;
+		c[i]->primero = (tipoCelda *) calloc (1, sizeof(tipoCelda));
+		c[i]->ultimo = c[i]->primero;
+		c[i]->primero->elemento = i;
 	}
 }
 
-tipoElemento buscar(tipoElemento x, particion C){
+tipoElemento buscar(tipoElemento x, particion c){
 	int i;
-	tipoCelda aux;
+	tipoCelda * aux;
 
 	for(i = 0; i<MAXIMO; i++){
-		aux = C[i]->primero;
+		aux = c[i]->primero;
 
 		while(aux!=NULL){
 			if(aux->elemento == x)
@@ -43,29 +43,29 @@ tipoElemento buscar(tipoElemento x, particion C){
 	}
 }
 
-void unir(tipoElemento x, tipoElemento y, particion C){
+void unir(tipoElemento x, tipoElemento y, particion c){
 
-	tipoElemento claseAUnir = buscar(x,C);
-	tipoElemento claseBase = buscar(x,C);
+	tipoElemento claseAUnir = buscar(x,c);
+	tipoElemento claseBase = buscar(x,c);
 
 	if(claseAUnir == claseBase)
 		return;
 
-	C[claseBase]->ultimo->sig = C[claseAUnir]->primero;
-	C[claseBase]->ultimo = c[ClaseAUnir]->primero;
+	c[claseBase]->ultimo->sig = c[claseAUnir]->primero;
+	c[claseBase]->ultimo = c[claseAUnir]->primero;
 
-	C[claseAUnir]->primero = NULL;
-	C[claseAUnir]->ultimo = NULL;
+	c[claseAUnir]->primero = NULL;
+	c[claseAUnir]->ultimo = NULL;
 
 }
 
 //funciones auxiliares
-void verParticion(particion C)
+void verParticion(particion c)
 {
 	int i;
   tipoCelda *aux;
   for (i =0;i<MAXIMO;i++) {
-     	aux = C[i].primero;
+     	aux = c[i].primero;
       if (aux!=NULL)
 			 	printf("\n\nClase de equivalencia representante %d: ",i);
       while (aux!=NULL)
@@ -76,13 +76,13 @@ void verParticion(particion C)
   }
 }
 
-void verClaseEquivalencia(tipoElemento x,particion C){
+void verClaseEquivalencia(tipoElemento x,particion c){
 	int representante;
   tipoCelda *aux;
 
-    representante = buscar(x,C);
+    representante = buscar(x,&c);
     printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x, representante);
-    aux = C[representante].primero;
+    aux = c[representante].primero;
     while (aux)
         {
 					printf(" %d ",aux->elemento);

@@ -60,7 +60,7 @@ tipoElemento colaSuprime(Cola *c)
 
 	if(colaVacia(c)){
 		printf("Fallo al suprimir en cola.\n");
-		return 1;
+		return NULL;
 	}
 
 	temp = c->frente;

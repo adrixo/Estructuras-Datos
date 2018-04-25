@@ -5,11 +5,7 @@
 
 
 #ifdef EJERCICIO1
-/******************************************************************
-* Árboles Binarios de Búsqueda SIN CLAVES REPETIDAS
-* Se incluye un poco de código para mostrar la diferencia entre   *
-* insertar (paso por referencia) y buscar                         *
-*******************************************************************/
+/* Árboles Binarios de Búsqueda sin calves repetidas */
 
 int insertar(tipoArbolBB *raiz,tipoClave clave)
 {
@@ -44,9 +40,8 @@ int buscar(tipoClave clave,tipoArbolBB raiz, tipoNodo **nodo)
 #endif
 
 #ifdef EJERCICIO3
-/******************************************************
-* Árboles Binarios de Búsqueda CON CLAVES REPETIDAS   *
-******************************************************/
+
+/* Árboles Binarios de Búsqueda con claves repetidas. */
 int insertar(tipoArbolBB *raiz,tipoClave clave, tipoInfo info)
 { tipoNodo *nuevo;
 
@@ -58,11 +53,9 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave)
 }
 
 #endif
-/*****************************************************************************************
-* Funciones GENERALES adaptadas a los dos ejercicios mediante DIRECTIVAS DE COMPILACIÓN  *
-/*****************************************************************************************/
-tipoNodo *creaNodo(tipoClave clave, tipoInfo info)
-{ tipoNodo * nuevo;
+/* Funciones GENERALES adaptadas a los dos ejercicios mediante DIRECTIVAS DE COMPILACIÓN  */
+tipoNodo *creaNodo(tipoClave clave, tipoInfo info){
+  tipoNodo * nuevo;
 
   //   nuevo =(tipoNodo *)calloc(1, sizeof(tipoNodo));
   if ((nuevo =(tipoNodo *)malloc(sizeof(tipoNodo)))==NULL)
@@ -81,8 +74,8 @@ tipoNodo *creaNodo(tipoClave clave, tipoInfo info)
   }
 }
 
-void preOrden(tipoArbolBB a)
-{ if (a) {
+void preOrden(tipoArbolBB a){
+  if (a) {
   	#ifdef EJERCICIO1
 	printf("%d %d \n", a->clave,a->info);
 	#endif

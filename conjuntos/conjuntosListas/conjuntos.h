@@ -1,28 +1,28 @@
-#ifndef __CONJUNTOS_H
-#define __CONJUNTOS_H
+#ifndef __cONJUNTOS_H
+#define __cONJUNTOS_H
 
 #define MAXIMO 16
 
 typedef int tipoElemento;
 
-typedef struct tipoCelda {
+typedef struct tipocelda {
 	tipoElemento elemento;
-	struct tipoCelda * sig;
-	} tipoCelda;
+	struct tipocelda * sig;
+	} tipocelda;
 
 typedef struct {
-	tipoCelda * primero , *ultimo;
+	tipocelda *primero , *ultimo;
 	} tipoLista;
 
 
-typedef tipoLista particion[MAXIMO];
-typedef int tipoConjunto;
+typedef tipoLista * particion[MAXIMO];
+typedef int tipoconjunto;
 
-void crea(particion C);
-tipoElemento buscar(tipoElemento x, particion C);
-void unir(tipoElemento x, tipoElemento y, particion C);
+void crea(particion c);
+tipoElemento buscar(tipoElemento x, particion c);
+void unir(tipoElemento x, tipoElemento y, particion c);
 
-void verParticion(particion C);
-void verClaseEquivalencia(tipoElemento x,particion P);
+void verParticion(particion c);
+void verclaseEquivalencia(tipoElemento x,particion c);
 
 #endif

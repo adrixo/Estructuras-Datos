@@ -3,16 +3,14 @@
 
 typedef int tipoElemento;
 
+typedef struct tipoCelda {
+	tipoElemento elemento;
+	struct tipoCelda * sig;
+} tipoCelda;
 
-typedef struct tipoCelda { 
-	tipoElemento elemento; 
-	struct tipoCelda * sig; 
-	} tipoCelda;
-	
-	
 typedef struct {
 	tipoCelda * raiz , *ultimo;
-	} Lista;
+} Lista;
 
 typedef tipoCelda *tipoPosicion;
 
@@ -32,4 +30,4 @@ tipoElemento recupera(tipoPosicion p, Lista *l);
 void imprime(Lista *l);
 int destruye(Lista *l);
 
-#endif 
+#endif

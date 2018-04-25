@@ -2,8 +2,7 @@
 #include <string.h>
 #include "arbol.h"
 #include "genArbol.h"
-#include "pila.h"
-#include "colaArbol.h"
+#include "../Pila/pila.h"
 
 void presionaTecla();
 

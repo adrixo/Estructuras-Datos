@@ -17,12 +17,12 @@ testAlgoritmoHeapsortMonticulos:	monticulo/testAlgoritmoHeapsort.c monticulo.o
 	gcc -g monticulo/testAlgoritmoHeapsort.c monticulo.o -o testAlgoritmoHeapsort.TAD
 
 #Conjuntos Disjuntos
-cMatrices: conjuntos/prueba.c conjuntos/conjuntosMatrices/conjuntos.o
-	gcc -g conjuntos/prueba.c -DMATRICES conjuntos/conjuntosMatrices/conjuntos.o -o cMatrices.TAD
-cListas: conjuntos/prueba.c conjuntos/conjuntosListas/conjuntos.o
-	gcc -g conjuntos/prueba.c -DLISTAS conjuntos/conjuntosListas/conjuntos.o -o cListas.TAD
-cArboles: conjuntos/prueba.c conjuntos/conjuntosArboles/conjuntos.o
-	gcc -g conjuntos/prueba.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o cArboles.TAD
+conjuntosMatrices: conjuntos/testConjuntos.c conjuntos/conjuntosMatrices/conjuntos.o
+	gcc -g conjuntos/testConjuntos.c -DMATRICES conjuntos/conjuntosMatrices/conjuntos.o -o conjuntosMatrices.TAD
+conjuntosListas: conjuntos/testConjuntos.c conjuntos/conjuntosListas/conjuntos.o
+	gcc -g conjuntos/testConjuntos.c -DLISTAS conjuntos/conjuntosListas/conjuntos.o -o conjuntosListas.TAD
+conjuntosArboles: conjuntos/testConjuntos.c conjuntos/conjuntosArboles/conjuntos.o
+	gcc -g conjuntos/testConjuntos.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o conjuntosArboles.TAD
 
 #grafos
 ej1: Grafos/ejercicio1.c Grafos/grafos.o cola.o

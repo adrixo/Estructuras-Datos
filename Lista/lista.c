@@ -3,25 +3,19 @@
 #include <errno.h>
 #include "lista.h"
 
-
-
-int
-creaVacia(Lista *l)
-{
-    if (l == NULL)
-        return -2;
-    else if (NULL == (l->raiz = l->ultimo = (tipoCelda *)malloc(sizeof(tipoCelda))))
-        return -1;
-    else {
+int creaVacia(Lista *l) {
+  if (l == NULL)
+    return -1;
+  else if (NULL == (l->raiz = l->ultimo = (tipoCelda *)malloc(sizeof(tipoCelda))))
+    return -1;
+  else {
         l->raiz->sig = NULL;
         return 0;
     }
 }
 
+int vacia(Lista *l){
 
-int
-vacia(Lista *l)
-{
     if (l == NULL || l->raiz == NULL) {
         return -1;
     }
@@ -31,9 +25,7 @@ vacia(Lista *l)
         return 0;
 }
 
-int
-destruye(Lista *l)
-{
+int destruye(Lista *l) {
     if (l == NULL || l->raiz == NULL) {
         return -1;
     }
@@ -47,13 +39,10 @@ destruye(Lista *l)
     }
 }
 
-
-void
-imprime(Lista *l)
-{
+void imprime(Lista *l) {
     tipoCelda *aImprimir;
     int posicion;
-    
+
     if (l == NULL || l->raiz == NULL) {
         return;
     }
@@ -68,11 +57,9 @@ imprime(Lista *l)
     }
 }
 
-tipoPosicion
-anterior(tipoPosicion p, Lista *l)
-{
+tipoPosicion anterior(tipoPosicion p, Lista *l) {
     tipoCelda *anterior;
-    
+
     if (l == NULL || l->raiz == NULL || p == NULL) {
         return NULL;
     }
@@ -88,72 +75,15 @@ anterior(tipoPosicion p, Lista *l)
 }
 
 
-tipoPosicion
-primero(Lista *l)
-{
-    
-    
+tipoPosicion primero(Lista *l) {
+
+
 }
 
 
 
-tipoPosicion
-fin(Lista *l)
-{
-    
-    
-    
-    
-}
+tipoPosicion fin(Lista *l) {
 
-
-
-
-int
-inserta(tipoElemento x, tipoPosicion p, Lista *l)
-{
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-}
-
-
-int
-sumprime (tipoPosicion p, Lista *l)
-{
-    
-    
-    
-    
-    
-    
-    
-}
-
-
-
-tipoPosicion
-siguiente(tipoPosicion p,Lista *l)
-{
-    
-   
-    
-}
-
-
-
-
-tipoPosicion
-localiza (tipoElemento x, Lista *l)
-{
-    
 
 
 
@@ -161,26 +91,64 @@ localiza (tipoElemento x, Lista *l)
 
 
 
-tipoElemento
-recupera(tipoPosicion p, Lista *l)
-{
-    
-    
-    
-    
-    
+
+int inserta(tipoElemento x, tipoPosicion p, Lista *l) {
+
+
+
+
+
+
+
+
+
+
 }
 
 
-int
-anula(Lista *l)
-{
-    
-    
-    
-    
-    
+int sumprime (tipoPosicion p, Lista *l) {
+
+
+
+
+
+
+
 }
 
 
 
+tipoPosicion siguiente(tipoPosicion p,Lista *l) {
+
+
+
+}
+
+
+
+
+tipoPosicion localiza (tipoElemento x, Lista *l) {
+
+
+
+
+}
+
+
+
+tipoElemento recupera(tipoPosicion p, Lista *l) {
+
+
+
+
+
+}
+
+
+int anula(Lista *l) {
+
+
+
+
+
+}
