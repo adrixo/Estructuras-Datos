@@ -3,7 +3,13 @@
 
 typedef int tipoClave;
 
-typedef char tipoInfo[20];
+#ifdef EJERCICIO1
+	typedef int tipoInfo;
+#endif
+
+#ifdef EJERCICIO3
+	typedef char tipoInfo[20];
+#endif
 
 typedef struct tipoNodo {
 	tipoClave clave;
