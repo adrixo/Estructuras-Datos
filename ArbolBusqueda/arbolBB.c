@@ -4,7 +4,7 @@
 #include "arbolBB.h"
 
 
-#ifdef EJERCICIO1
+#ifdef SINREPETIDOS
 /* Árboles Binarios de Búsqueda sin calves repetidas */
 
 int insertar(tipoArbolBB *raiz,tipoClave clave)
@@ -74,9 +74,9 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave){
 }
 #endif
 
-#ifdef EJERCICIO3
+#ifdef CONREPETIDOS
 /* Árboles Binarios de Búsqueda con claves repetidas. */
-int insertar(tipoArbolBB *raiz,tipoClave clave, tipoInfo info)
+int insertar(tipoArbolBB *raiz, tipoClave clave, tipoInfo info)
 {
   tipoNodo *nuevo, *aux;
 
@@ -95,10 +95,10 @@ int insertar(tipoArbolBB *raiz,tipoClave clave, tipoInfo info)
   }
 
   else if (clave < (*raiz)->clave)
-    insertar(&((*raiz)->izq),clave);
+    insertar(&((*raiz)->izq),clave, info);
 
   else if (clave > (*raiz)->clave)
-    insertar(&((*raiz)->der),clave);
+    insertar(&((*raiz)->der),clave, info);
 
   return 0;
 }
@@ -106,7 +106,7 @@ int insertar(tipoArbolBB *raiz,tipoClave clave, tipoInfo info)
 
 int eliminar(tipoArbolBB *raiz, tipoClave clave)
 {
-  tipoNodo aux, ant;
+  tipoNodo *aux, *ant;
 
   if (raiz == NULL)
     return 0;
@@ -158,12 +158,15 @@ tipoNodo *creaNodo(tipoClave clave, tipoInfo info){
   else
   {
     nuevo->clave = clave;
-  	#ifdef EJERCICIO1
+
+  	#ifdef SINREPETIDOS
       nuevo->info=info;
   	#endif
-  	#ifdef EJERCICIO3
+
+  	#ifdef CONREPETIDOS
       strcpy(nuevo->info,info);
   	#endif
+
   	nuevo->izq=NULL;
   	nuevo->der=NULL;
     return nuevo;
@@ -172,12 +175,15 @@ tipoNodo *creaNodo(tipoClave clave, tipoInfo info){
 
 void preOrden(tipoArbolBB a){
   if (a) {
-    #ifdef EJERCICIO1
+
+    #ifdef SINREPETIDOS
   	 printf("%d %d \n", a->clave,a->info);
   	#endif
-  	#ifdef EJERCICIO3
+
+  	#ifdef CONREPETIDOS
       printf("%d %s \n", a->clave,a->info);
   	#endif
+
   	preOrden(a->izq);
   	preOrden(a->der);
   }
@@ -187,11 +193,12 @@ void enOrden(tipoArbolBB a)
 {
   if (a) {
 	 enOrden(a->izq);
-  #ifdef EJERCICIO1
+
+  #ifdef SINREPETIDOS
 	 printf("%d %d \n", a->clave,a->info);
   #endif
 
-  #ifdef EJERCICIO3
+  #ifdef CONREPETIDOS
 	 printf("%d %s \n", a->clave,a->info);
   #endif
 
@@ -204,11 +211,12 @@ void posOrden(tipoArbolBB a)
   if (a) {
   	enOrden(a->izq);
   enOrden(a->der);
- 	#ifdef EJERCICIO1
+
+ 	#ifdef SINREPETIDOS
     printf("%d %d \n", a->clave,a->info);
   #endif
 
-	#ifdef EJERCICIO3
+	#ifdef CONREPETIDOS
 	 printf("%d %s \n", a->clave,a->info);
   #endif
   }

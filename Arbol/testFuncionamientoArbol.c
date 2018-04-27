@@ -4,7 +4,8 @@
 #include "genArbol.h"
 
 int main(void)
-{ Arbol arbol;
+{
+  Arbol arbol;
   Arbol binario;
 
   binario = creaNodo('a');

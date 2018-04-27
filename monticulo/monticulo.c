@@ -13,9 +13,8 @@ int vacioMonticulo(Monticulo m){
 
 int insertar(tipoElemento x, Monticulo *m){
 
-	if(m->tamanno >= MAXIMO -1){
+	if(m->tamanno >= MAXIMO -1)
 		return -1;
-	}
 
 	m->tamanno++;
 	m->elemento[m->tamanno] = x;
@@ -26,7 +25,8 @@ int insertar(tipoElemento x, Monticulo *m){
 
 int eliminarMinimo(Monticulo *m, tipoElemento *minimo){
 
-	if(m->tamanno <= 0) return -1;
+	if(m->tamanno <= 0)
+		return -1;
 
 	*minimo = m->elemento[1];
 	m->elemento[1] = m->elemento[m->tamanno];
@@ -39,14 +39,16 @@ int eliminarMinimo(Monticulo *m, tipoElemento *minimo){
 }
 
 void decrementarClave(int pos, int cantidad, Monticulo *m){
-	if(pos <= 0 || pos > m->tamanno) return;
+	if(pos <= 0 || pos > m->tamanno)
+		return;
 
 	m->elemento[pos].clave -= cantidad;
 	filtradoAscendente(m,pos);
 }
 
 void incrementarClave(int pos, int cantidad, Monticulo *m){
-	if(pos <= 0 || pos > m->tamanno) return;
+	if(pos <= 0 || pos > m->tamanno)
+		return;
 
 	m->elemento[pos].clave += cantidad;
 	filtradoDescendente(m,pos);
@@ -54,11 +56,11 @@ void incrementarClave(int pos, int cantidad, Monticulo *m){
 
 int esMonticulo(Monticulo m){
 	int i;
-	for(i=m.tamanno; i>1; i--){
-		if(m.elemento[i/2].clave > m.elemento[i].clave){
+
+	for(i=m.tamanno; i>1; i--)
+		if(m.elemento[i/2].clave > m.elemento[i].clave)
 			return 0;
-		}
-	}
+
 	return 1;
 }
 
@@ -79,7 +81,7 @@ void filtradoDescendente(Monticulo *m, int i){
 		if(ultimo.clave > m->elemento[hijo].clave){
 			m->elemento[i] = m->elemento[hijo];
 			i = hijo;
-		} else{
+		} else {
 			finFiltrado = 1;
 		}
 	}

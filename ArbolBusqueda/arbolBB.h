@@ -3,11 +3,11 @@
 
 typedef int tipoClave;
 
-#ifdef EJERCICIO1
+#ifdef SINREPETIDOS
 	typedef int tipoInfo;
 #endif
 
-#ifdef EJERCICIO3
+#ifdef CONREPETIDOS
 	typedef char tipoInfo[20];
 #endif
 
@@ -27,13 +27,13 @@ void preOrden(tipoArbolBB raiz);
 void posOrden(tipoArbolBB raiz);
 
 // Funciones a implementar por el alumno
-#ifdef EJERCICIO1
+#ifdef SINREPETIDOS
 	int insertar(tipoArbolBB *raiz, tipoClave clave);
 	int buscar(tipoClave clave,tipoArbolBB raiz, tipoNodo **nodo);
 	int eliminar(tipoArbolBB *raiz, tipoClave clave);
 #endif
 
-#ifdef EJERCICIO3
+#ifdef CONREPETIDOS
 	int insertar(tipoArbolBB *raiz,tipoClave clave, tipoInfo info);
 	int eliminar(tipoArbolBB *raiz, tipoClave clave);
 #endif

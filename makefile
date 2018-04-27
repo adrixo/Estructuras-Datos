@@ -28,7 +28,14 @@ conjuntosArboles: conjuntos/testConjuntos.c conjuntos/conjuntosArboles/conjuntos
 ej1: Grafos/ejercicio1.c Grafos/grafos.o cola.o
 	gcc -g Grafos/ejercicio1.c Grafos/grafos.c cola.o -o ej2
 
+testArbolBinarioBusqueda_SinNodosRepetidos: ArbolBusqueda/testSinNodosRepetidos.c arbolBB_Sin.o
+	gcc -g -DSINREPETIDOS ArbolBusqueda/testSinNodosRepetidos.c arbolBB_Sin.o -o testArbolBinarioBusqueda_SinNodosRepetidos.TAD
+testArbolBinarioBusqueda_ConNodosRepetidos: ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o
+	gcc -g -DCONREPETIDOS ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o -o testArbolBinarioBusqueda_ConNodosRepetidos.TAD
+
+#####
 #####Estructuras de datos
+#####
 arbol.o: Arbol/arbol.h Arbol/arbol.c
 	gcc -c -g Arbol/arbol.c
 
@@ -59,6 +66,12 @@ conjuntos/conjuntosA/conjuntos.o: conjuntos/conjuntosArboles/conjuntos.c conjunt
 #Grafos
 Grafos/grafos.o: Grafos/grafos.c Grafos/grafos.h
 	gcc -g -c Grafos/grafos.c
+
+#Arboles Binarios Busqueda
+arbolBB_Sin.o: ArbolBusqueda/arbolBB.h ArbolBusqueda/arbolBB.c
+	gcc -c -g -DSINREPETIDOS ArbolBusqueda/arbolBB.c -o arbolBB_Sin.o
+arbolBB_Con.o: ArbolBusqueda/arbolBB.c ArbolBusqueda/arbolBB.h
+	gcc -c -g -DCONREPETIDOS ArbolBusqueda/arbolBB.c -o arbolBB_Con.o
 
 limpiar:
 	rm *.o *.TAD

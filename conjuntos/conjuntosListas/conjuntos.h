@@ -5,17 +5,17 @@
 
 typedef int tipoElemento;
 
-typedef struct tipocelda {
+typedef struct tipoCelda {
 	tipoElemento elemento;
-	struct tipocelda * sig;
-	} tipocelda;
+	struct tipoCelda * sig;
+} tipoCelda;
 
 typedef struct {
-	tipocelda *primero , *ultimo;
+	tipoCelda *primero , *ultimo;
 	} tipoLista;
 
 
-typedef tipoLista * particion[MAXIMO];
+typedef tipoLista particion[MAXIMO];
 typedef int tipoconjunto;
 
 void crea(particion c);

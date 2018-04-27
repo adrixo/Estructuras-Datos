@@ -3,27 +3,14 @@
 #include <string.h>
 #include "conjuntos.h"
 
-/*
-typedef int tipoElemento;
-
-typedef struct tipoCelda {
-	tipoElemento elemento;
-	struct tipoCelda * sig;
-	} tipoCelda;
-
-typedef struct {
-	tipoCelda * primero , *ultimo;
-	} tipoLista;
-*/
-
 /* cada clase de equivalencia es una lista enlazada que contiene sus elementos */
 void crea(particion c){
 	int i;
 
 	for(i = 0; i<MAXIMO; i++){
-		c[i]->primero = (tipoCelda *) calloc (1, sizeof(tipoCelda));
-		c[i]->ultimo = c[i]->primero;
-		c[i]->primero->elemento = i;
+		c[i].primero = (tipoCelda *) calloc (1, sizeof(tipoCelda));
+		c[i].ultimo = c[i].primero;
+		c[i].primero->elemento = i;
 	}
 }
 
@@ -31,8 +18,8 @@ tipoElemento buscar(tipoElemento x, particion c){
 	int i;
 	tipoCelda * aux;
 
-	for(i = 0; i<MAXIMO; i++){
-		aux = c[i]->primero;
+	for(i = 0; i < MAXIMO; i++){
+		aux = c[i].primero;
 
 		while(aux!=NULL){
 			if(aux->elemento == x)
@@ -41,22 +28,15 @@ tipoElemento buscar(tipoElemento x, particion c){
 				aux = aux->sig;
 		}
 	}
+	return -1;
 }
 
 void unir(tipoElemento x, tipoElemento y, particion c){
-
-	tipoElemento claseAUnir = buscar(x,c);
-	tipoElemento claseBase = buscar(x,c);
-
-	if(claseAUnir == claseBase)
-		return;
-
-	c[claseBase]->ultimo->sig = c[claseAUnir]->primero;
-	c[claseBase]->ultimo = c[claseAUnir]->primero;
-
-	c[claseAUnir]->primero = NULL;
-	c[claseAUnir]->ultimo = NULL;
-
+if(x != -1 && y != -1 && x != y){
+		c[x].ultimo->sig = c[y].primero;
+		c[x].ultimo = c[y].ultimo;
+		c[y].primero = c[y].ultimo = NULL;
+	}
 }
 
 //funciones auxiliares
@@ -64,11 +44,14 @@ void verParticion(particion c)
 {
 	int i;
   tipoCelda *aux;
+
   for (i =0;i<MAXIMO;i++) {
      	aux = c[i].primero;
+
       if (aux!=NULL)
 			 	printf("\n\nClase de equivalencia representante %d: ",i);
-      while (aux!=NULL)
+
+	    while (aux!=NULL)
       {
 				printf("%d ",aux->elemento);
         aux=aux->sig;

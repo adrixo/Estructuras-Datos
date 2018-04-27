@@ -42,7 +42,7 @@ int main(){
   printf("Situacion FINAL:   ");
   verParticion(C);
 
-  printf("Comprobar clase del elemento: ");
+  printf("\nComprobar clase del elemento: ");
   scanf("%d", &aBuscar);
   printf("\n\nEl elemento %d pertenence a la clase de equivalencia con representante %d\n",aBuscar, buscar(aBuscar,C));
 

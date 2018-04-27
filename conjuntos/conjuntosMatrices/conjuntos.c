@@ -1,44 +1,33 @@
 #include "conjuntos.h"
 #include <stdio.h>
 
-/*
-#define MAXIMO 16
-typedef int particion[MAXIMO];
-typedef int tipoConjunto;
-typedef int tipoElemento;
-*/
-
-/* Cada celda almacena el representante de su clase de equivalencia */
-void crea(particion C){
+void crea(particion c){
 	int i;
 
-	for( i=0; i<MAXIMO; i++ ){
-		C[i] = i;
-	}
+	for( i=0; i<MAXIMO; i++ )
+		c[i] = i;
 }
 
-tipoElemento buscar(tipoElemento x, particion C){
-
-	while(C[x] != x){
-			x = C[x];
-	}
-
-	return x;
+tipoElemento buscar(tipoElemento x, particion c){
+	return c[x];
 }
 
-void unir(tipoElemento x, tipoElemento y, particion C){
-	tipoElemento aux = buscar(x,C);
-	C[aux] = y;
+void unir(tipoElemento x, tipoElemento y, particion c){
+	int i;
+
+	for(i=0; i < MAXIMO ; i++)
+		if( c[i] == c[y])
+			c[i] = c[x];
 }
 
 //Funciones auxiliares
-void verParticion(particion C)
+void verParticion(particion c)
 {
 	int i;
 
   printf("\n");
   for (i =0;i<MAXIMO;i++)
-		printf("|%2d",C[i]);
+		printf("|%2d",c[i]);
   printf("| contenido del vector\n");
 
   for (i =0;i<MAXIMO;i++)
@@ -50,14 +39,15 @@ void verParticion(particion C)
   printf("  índices \n\n");
 }
 
-void verClaseEquivalencia(tipoElemento x,particion C)
+void verClaseEquivalencia(tipoElemento x,particion c)
 {
 	int representante,i;
-  representante = buscar(x,C);
-  printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x,representante);
+	
+  representante = buscar(x,c);
+  printf("\n\nclase de Equivalencia de %d cuyo representante es %d: ", x,representante);
 
   for (i=0;i<MAXIMO;i++)
-		if (C[i]==representante)
+		if (c[i]==representante)
 			printf("%d ",i);
   printf("\n");
 
