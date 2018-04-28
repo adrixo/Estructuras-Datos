@@ -31,7 +31,7 @@ ej1: Grafos/ejercicio1.c Grafos/grafos.o cola.o
 testArbolBinarioBusqueda_SinNodosRepetidos: ArbolBusqueda/testSinNodosRepetidos.c arbolBB_Sin.o
 	gcc -g -DSINREPETIDOS ArbolBusqueda/testSinNodosRepetidos.c arbolBB_Sin.o -o testArbolBinarioBusqueda_SinNodosRepetidos.TAD
 testArbolBinarioBusqueda_ConNodosRepetidos: ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o
-	gcc -g -DCONREPETIDOS ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o -o testArbolBinarioBusqueda_ConNodosRepetidos.TAD
+	gcc -g -DCONREPETIDOS ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o -o testArbolBinarioBusqueda_ConNodosRepetidos.TAD 
 
 #####
 #####Estructuras de datos
