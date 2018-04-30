@@ -1,5 +1,3 @@
-// Adrián Valera roman 17 - 2 - 2018
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -23,7 +21,8 @@ int colaCreaVacia(Cola *c)
 
 int colaVacia(Cola *c)
 {
-	if( c->frente == NULL && c->fondo ==NULL){
+
+	if( c->frente == NULL || c->fondo ==NULL){
 		return 1;
 	} else {
 		return 0;
@@ -32,24 +31,31 @@ int colaVacia(Cola *c)
 
 int colaInserta(Cola *c,tipoElemento elemento)
 {
-
     tipoCelda * nuevaCelda;
-    nuevaCelda = (tipoCelda *)malloc(sizeof(tipoCelda));
+
+		if(c==NULL)
+			return 1;
+
+    nuevaCelda = (tipoCelda *) malloc( sizeof(tipoCelda) );
+
     if(nuevaCelda == NULL){
-		printf("Error crear nodo cola.\n");
+			printf("Error crear nodo cola.\n");
     	return 1;
-	}
-    nuevaCelda->elemento = elemento;
-    nuevaCelda->sig = NULL;
+		}
+
+
+  	nuevaCelda->elemento = elemento;
+  	nuevaCelda->sig = NULL;
+
     if(colaVacia(c)){
     	c->frente = nuevaCelda;
     	c->fondo = nuevaCelda;
-	} else {
-		c->fondo->sig = nuevaCelda;
-		c->fondo = nuevaCelda;
-	}
+		} else {
+			c->fondo->sig = nuevaCelda;
+			c->fondo = nuevaCelda;
+		}
 
-	return 0;
+		return 0;
 }
 
 tipoElemento colaSuprime(Cola *c)

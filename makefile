@@ -10,28 +10,35 @@ testFuncionesArbol: Arbol/testFuncionesArbol.c arbol.o genArbol.o colaArbol.o pi
 	gcc -g Arbol/testFuncionesArbol.c arbol.o genArbol.o colaArbol.o -o testFuncionesArbol.TAD
 
 #Monticulos
-testMonticulo:	monticulo/testMonticulo.c monticulo.o
-	gcc -g monticulo/testMonticulo.c monticulo.o -o testMonticulo.TAD
+testMonticulo:	Monticulo/testMonticulo.c monticulo.o
+	gcc -g Monticulo/testMonticulo.c monticulo.o -o testMonticulo.TAD
 
-testAlgoritmoHeapsortMonticulos:	monticulo/testAlgoritmoHeapsort.c monticulo.o
-	gcc -g monticulo/testAlgoritmoHeapsort.c monticulo.o -o testAlgoritmoHeapsort.TAD
+testAlgoritmoHeapsortMonticulos:	Monticulo/testAlgoritmoHeapsort.c monticulo.o
+	gcc -g Monticulo/testAlgoritmoHeapsort.c monticulo.o -o testAlgoritmoHeapsort.TAD
 
 #Conjuntos Disjuntos
-conjuntosMatrices: conjuntos/testConjuntos.c conjuntos/conjuntosMatrices/conjuntos.o
-	gcc -g conjuntos/testConjuntos.c -DMATRICES conjuntos/conjuntosMatrices/conjuntos.o -o conjuntosMatrices.TAD
-conjuntosListas: conjuntos/testConjuntos.c conjuntos/conjuntosListas/conjuntos.o
-	gcc -g conjuntos/testConjuntos.c -DLISTAS conjuntos/conjuntosListas/conjuntos.o -o conjuntosListas.TAD
-conjuntosArboles: conjuntos/testConjuntos.c conjuntos/conjuntosArboles/conjuntos.o
-	gcc -g conjuntos/testConjuntos.c -DARBOLES conjuntos/conjuntosArboles/conjuntos.o -o conjuntosArboles.TAD
+conjuntosMatrices: Conjuntos/testConjuntos.c Conjuntos/conjuntosMatrices/conjuntos.o
+	gcc -g Conjuntos/testConjuntos.c -DMATRICES Conjuntos/conjuntosMatrices/conjuntos.o -o conjuntosMatrices.TAD
+conjuntosListas: Conjuntos/testConjuntos.c Conjuntos/conjuntosListas/conjuntos.o
+	gcc -g Conjuntos/testConjuntos.c -DLISTAS Conjuntos/conjuntosListas/conjuntos.o -o conjuntosListas.TAD
+conjuntosArboles: Conjuntos/testConjuntos.c Conjuntos/conjuntosArboles/conjuntos.o
+	gcc -g Conjuntos/testConjuntos.c -DARBOLES Conjuntos/conjuntosArboles/conjuntos.o -o conjuntosArboles.TAD
 
 #grafos
-ej1: Grafos/ejercicio1.c Grafos/grafos.o cola.o
-	gcc -g Grafos/ejercicio1.c Grafos/grafos.c cola.o -o ej2
+testGrafosBasico: Grafos/testGrafosBasico.c Grafos/grafos.o cola.o pilaG.o monticuloG.o
+	gcc -g Grafos/testGrafosBasico.c Grafos/grafos.c cola.o pila.o monticulo.o 	 -o testGrafosBasico.TAD
+testGrafosOrdenTopologico: Grafos/testGrafosOrdenTopologico.c Grafos/grafos.o cola.o pilaG.o monticuloG.o
+	gcc -g Grafos/testGrafosOrdenTopologico.c Grafos/grafos.c cola.o pila.o monticulo.o  -o testGrafosOrdenTopologico.TAD
+testGrafosCaminos: Grafos/testGrafosCaminos.c Grafos/grafos.o cola.o pilaG.o monticuloG.o
+	gcc -g Grafos/testGrafosCaminos.c Grafos/grafos.c cola.o pila.o monticulo.o -o testGrafosCaminos.TAD
+testGrafosArbolExpansion: Grafos/testGrafosArbolExpansion.c Grafos/grafos.o cola.o pilaG.o monticuloG.o
+	gcc -g Grafos/testGrafosArbolExpansion.c Grafos/grafos.c cola.o pila.o monticulo.o -o testGrafosArbolExpansion.TAD
 
+#arboles binarios de busqueda
 testArbolBinarioBusqueda_SinNodosRepetidos: ArbolBusqueda/testSinNodosRepetidos.c arbolBB_Sin.o
 	gcc -g -DSINREPETIDOS ArbolBusqueda/testSinNodosRepetidos.c arbolBB_Sin.o -o testArbolBinarioBusqueda_SinNodosRepetidos.TAD
 testArbolBinarioBusqueda_ConNodosRepetidos: ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o
-	gcc -g -DCONREPETIDOS ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o -o testArbolBinarioBusqueda_ConNodosRepetidos.TAD 
+	gcc -g -DCONREPETIDOS ArbolBusqueda/testConNodosRepetidos.c arbolBB_Con.o -o testArbolBinarioBusqueda_ConNodosRepetidos.TAD
 
 #####
 #####Estructuras de datos
@@ -52,20 +59,24 @@ pila.o: Pila/pila.c Pila/pila.h Arbol/arbol.h
 	gcc -c Pila/pila.c
 
 #monticulo
-monticulo.o: monticulo/monticulo.h monticulo/monticulo.c
-	gcc -c -g monticulo/monticulo.c
+monticulo.o: Monticulo/monticulo.h Monticulo/monticulo.c
+	gcc -c -g Monticulo/monticulo.c
 
 #conjuntos
-conjuntos/conjuntosMatrices/conjuntos.o: conjuntos/conjuntosMatrices/conjuntos.c conjuntos/conjuntosMatrices/conjuntos.h
-	gcc -c -g conjuntos/conjuntosMatrices/conjuntos.c -o conjuntos/conjuntosMatrices/conjuntos.o
-conjuntos/conjuntosListas/conjuntos.o: conjuntos/conjuntosListas/conjuntos.c conjuntos/conjuntosListas/conjuntos.h
-	gcc -c -g conjuntos/conjuntosListas/conjuntos.c -o conjuntos/conjuntosListas/conjuntos.o
-conjuntos/conjuntosA/conjuntos.o: conjuntos/conjuntosArboles/conjuntos.c conjuntos/conjuntosArboles/conjuntos.h
-	gcc -c -g conjuntos/conjuntosArboles/conjuntos.c -o conjuntos/conjuntosArboles/conjuntos.o
+Conjuntos/conjuntosMatrices/conjuntos.o: Conjuntos/conjuntosMatrices/conjuntos.c Conjuntos/conjuntosMatrices/conjuntos.h
+	gcc -c -g Conjuntos/conjuntosMatrices/conjuntos.c -o Conjuntos/conjuntosMatrices/conjuntos.o
+Conjuntos/conjuntosListas/conjuntos.o: Conjuntos/conjuntosListas/conjuntos.c Conjuntos/conjuntosListas/conjuntos.h
+	gcc -c -g Conjuntos/conjuntosListas/conjuntos.c -o Conjuntos/conjuntosListas/conjuntos.o
+Conjuntos/conjuntosA/conjuntos.o: Conjuntos/conjuntosArboles/conjuntos.c Conjuntos/conjuntosArboles/conjuntos.h
+	gcc -c -g Conjuntos/conjuntosArboles/conjuntos.c -o Conjuntos/conjuntosArboles/conjuntos.o
 
 #Grafos
 Grafos/grafos.o: Grafos/grafos.c Grafos/grafos.h
 	gcc -g -c Grafos/grafos.c
+pilaG.o: Grafos/aux/Pila/pila.c Grafos/aux/Pila/pila.h
+	gcc -g -c Grafos/aux/Pila/pila.c
+monticuloG.o: Grafos/aux/Monticulo/monticulo.c Grafos/aux/Monticulo/monticulo.h
+	gcc -g -c Grafos/aux/Monticulo/monticulo.c
 
 #Arboles Binarios Busqueda
 arbolBB_Sin.o: ArbolBusqueda/arbolBB.h ArbolBusqueda/arbolBB.c

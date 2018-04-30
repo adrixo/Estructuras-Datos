@@ -29,7 +29,8 @@ int main(void)
 /************************************************************************/
 
 tipoGrafo *creaGrafoT57()
-{ int i;
+{
+  int i;
   pArco  p;
   tipoGrafo *g;
 

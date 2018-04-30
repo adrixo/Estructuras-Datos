@@ -14,29 +14,36 @@ int main(void)
 
 	gT28 = creaGrafoT28();
 	verGrafo(gT28);
-  	printf("\nProfundidad: ");
-  	profundidadMejorado(1,gT28);
-	iniciar(gT28);
-  	printf("\nProfundidad: ");
-  	profundidadMejorado(6,gT28);
-	iniciar(gT28);
+  printf("\nProfundidad desde 1: ");
+  profundidadMejorado(1,gT28);
+
+	//iniciar(gT28);
+  printf("\nProfundidad desde 6: ");
+  profundidadMejorado(6,gT28);
+
+	//iniciar(gT28);
  	printf("\nAmplitud : ");
  	amplitudMejorado(1,gT28);
+
 	printf("\nAmplitud : ");
 	amplitudMejorado(6,gT28);
+
 	verGrafo(gT28);
-  ciclico = ordenTop2(gT28);
-	if (ciclico==-1) printf("\nGrafo ciclico ¡ No es posible la ordenación topológica !");
+
+  ciclico = ordenTopologico(gT28);
+	if (ciclico==-1)
+    printf("\nGrafo ciclico ¡ No es posible la ordenación topológica !");
+
 	verGrafo(gT28);
 //	liberarListas(g);
 //	free(g);
-
 }
 /********************************************************/
 /* Creación del grafo de la figura 1 (transparecnia 28)
 /********************************************************/
 tipoGrafo *creaGrafoT28()
-{ int i;
+{
+  int i;
   pArco  p;
   tipoGrafo *g;
 

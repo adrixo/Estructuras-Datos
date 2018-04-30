@@ -8,40 +8,46 @@ tipoGrafo *creaGrafoT47();
 
 
 int main(void)
-{ tipoGrafo *gT47;
+{
+  tipoGrafo *gT47;
   int ciclico,distancia,vIni,vFin;
-  
+
 	gT47 = creaGrafoT47();
 	verGrafo(gT47);
-  	printf("\nProfundidad: ");
+
+  printf("\nProfundidad: ");
 	iniciar(gT47);
-  	profundidadMejorado(5,gT47); 	// Se necesita profundidad mejorado!!!
+  profundidadMejorado(5,gT47);
+
  	printf("\nAmplitud : ");
- 	amplitudMejorado(5,gT47);	// Se necesita amplitud mejorado!!
-	ciclico = ordenTop2(gT47);
-	if (ciclico==-1) printf("\nGrafo ciclico ¡ No es posible la ordenación topológica !");
+ 	amplitudMejorado(5,gT47);
+
+	ciclico = ordenTopologico(gT47);
+	if (ciclico==-1)
+    printf("\nGrafo ciclico ¡ No es posible la ordenación topológica !");
+  verGrafo(gT47);
+
+  printf("\nDijkstra: ");
+  dijkstra(1,gT47);
 	verGrafo(gT47);
-  	printf("\nDijkstra: ");
-  	dijkstra1(1,gT47);
-	verGrafo(gT47);
-        // Interpretación algoritmo de Dijkstra!!!
 	vIni=1;
 	vFin=6;
-	distancia = costeyTrayectoria(vIni,vFin,gT47); // Debe mostrar la secuencia de vértices en el camino mínimo!!!!
-	if (distancia!=INF) printf("Camino de coste %d \n", distancia);	
-	else printf("No existe camino de %d a %d \n",vIni,vFin);
+	distancia = costeyTrayectoria(vIni,vFin,gT47);
+	if (distancia!=INF)
+    printf("Camino de coste %d \n", distancia);
+	else
+    printf("No existe camino de %d a %d \n",vIni,vFin);
+
 	printf("\nCaminos Mínimos desde %d\n",vIni);
-	todosCaminosMin(vIni,gT47);	
+	todosCaminosMin(vIni,gT47);
 	printf("\nCaminos Mínimos desde %d\n",vFin);
-	dijkstra1(vFin,gT47);	
+	dijkstra(vFin,gT47);
 	todosCaminosMin(vFin,gT47);
 
 //	liberarListas(g);
 //	free(g);
 }
-/************************************************************/
-/* Creación del grafo ponderado de la  1 (transparencia 47) */
-/************************************************************/
+
 tipoGrafo *creaGrafoT47()
 { int i;
   pArco  p,aux;
@@ -122,4 +128,3 @@ tipoGrafo *creaGrafoT47()
 
   return g;
   }
-
