@@ -52,6 +52,7 @@ void caminosBasico(int vInicio, tipoGrafo *grafo);
 void caminos(int vInicio, tipoGrafo *grafo);
 
 /* PONDERADOS */
+int buscarVerticeDistanciaMinimaNoAlcanzado(tipoGrafo *grafo);
 void dijkstraBasico(int vInicio, tipoGrafo *grafo);
 void dijkstra(int vInicio, tipoGrafo *grafo);
 
@@ -60,8 +61,11 @@ void todosCaminosMin(int vIni, tipoGrafo *grafo);
 
 /* Árbol de Expansión en grafos NO dirigidos */
 /* Prim */
-tipoGrafo * prim1(tipoGrafo *grafo);
-tipoGrafo * prim2(tipoGrafo *grafo);
+int buscarVerticeCostoMinimoNoAlcanzado(tipoGrafo * grafo);
+tipoGrafo *crearArbolDeExpansion(tipoGrafo *grafo);
+tipoGrafo * primBasico(tipoGrafo *grafo);
+tipoGrafo * prim(tipoGrafo *grafo);
+
 /* Kruskal*/
 tipoGrafo * kruskal(tipoGrafo *grafo);
 

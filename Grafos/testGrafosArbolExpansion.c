@@ -19,7 +19,7 @@ int main(void)
 
   grafoT57 = creaGrafoT57();
   verGrafo(grafoT57);
-  //arbolExp=prim?(grafoT57);
+  //arbolExp=prim(grafoT57);
   arbolExp=kruskal(grafoT57);
   verGrafo(arbolExp);
 }

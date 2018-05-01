@@ -3,6 +3,7 @@
 #include "../Cola/cola.h"
 #include "aux/Pila/pila.h"
 #include "aux/Monticulo/monticulo.h"
+#include "aux/ConjuntosArboles/conjuntos.h"
 
 #include "grafos.h"
 
@@ -363,7 +364,8 @@ void caminos(int vInicio, tipoGrafo *grafo){
 }
 
 /*Caminos ponderados*/
-int buscarVerticeDistanciaMinimaNoAlcanzado(tipoGrafo *grafo) {
+int buscarVerticeDistanciaMinimaNoAlcanzado(tipoGrafo *grafo)
+{
 	int i;
   int distanciaMinima = INF + 1;
   int v = -1;
@@ -435,16 +437,16 @@ void dijkstra(int vInicio, tipoGrafo *grafo)
 	iniciaMonticulo(&m);
 
 	x.clave = 0;
-	x.informacion = vInicio;
+	x.informacion.v = vInicio;
 	insertar(x,&m);
 
 	while (!vacioMonticulo(m))
   {
 		eliminarMinimo(&m, &x);
 
-		if (!grafo->directorio[x.informacion].alcanzado)
+		if (!grafo->directorio[x.informacion.v].alcanzado)
     {
-			v = x.informacion;
+			v = x.informacion.v;
 			grafo->directorio[v].alcanzado = 1;
 			p = grafo->directorio[v].lista;
 
@@ -460,7 +462,7 @@ void dijkstra(int vInicio, tipoGrafo *grafo)
 						grafo->directorio[w].distancia = coste;
 						grafo->directorio[w].anterior = v;
 						x.clave = grafo->directorio[w].distancia;
-						x.informacion = w;
+						x.informacion.v = w;
 						insertar(x,&m);
 					}
 				}
@@ -521,17 +523,224 @@ void todosCaminosMin(int vIni, tipoGrafo *grafo)
 }
 
 /* prim */
-tipoGrafo * prim1(tipoGrafo *grafo)
+int buscarVerticeCostoMinimoNoAlcanzado(tipoGrafo * grafo)
 {
+  int i;
+  int costoMin = INF +1;
+  int v = -1;
 
+  for(i = 1; i<= grafo->orden; i++)
+  {
+    if(!grafo->directorio[i].alcanzado
+      && grafo->directorio[i].peso < costoMin)
+    {
+      costoMin = grafo->directorio[i].peso;
+      v = i;
+    }
+  }
+  return v;
 }
 
-tipoGrafo * prim2(tipoGrafo *grafo)
+void aceptarArista(tipoGrafo *grafo, tipoElementoMonticulo x)
 {
+	pArco p;
+	int i;
+  p = malloc(sizeof(arco));
+	if (p==NULL)
+  {
+		liberarListas(grafo);
+		free(grafo);
+		grafo = NULL;
+	} else {
+		p->v = x.informacion.w;
+		p->peso = x.clave;
+		p->sig = grafo->directorio[x.informacion.v].lista;
+		grafo->directorio[x.informacion.v].lista = p;
 
+    p = malloc(sizeof(arco));
+		if (p==NULL) {
+			liberarListas(grafo);
+			free(grafo);
+			grafo = NULL;
+		} else {
+			p->v = x.informacion.v;
+			p->peso = x.clave;
+			p->sig = grafo->directorio[x.informacion.w].lista;
+			grafo->directorio[x.informacion.w].lista = p;
+		}
+	}
 }
+
+tipoGrafo *crearArbolDeExpansion(tipoGrafo *grafo)
+{
+	tipoGrafo *arbol;
+	tipoElementoMonticulo x;
+	int i;
+
+  arbol = calloc(1, sizeof(tipoGrafo));
+	if (arbol == NULL )
+		return NULL;
+
+	arbol->orden = grafo->orden;
+
+	for (i = 1; i <= grafo->orden; i++)
+  {
+		x.clave = grafo->directorio[i].peso;
+		x.informacion.v = i;
+		x.informacion.w = grafo->directorio[i].anterior;
+
+		if (x.informacion.w)
+    {
+			aceptarArista(arbol, x);
+
+			if (arbol == NULL)
+				return NULL;
+		}
+	}
+	return arbol;
+}
+
+tipoGrafo * primBasico(tipoGrafo *grafo)
+{
+  pArco p;
+  int i, v, w;
+  int vIni = 1;
+
+  grafo->directorio[vIni].peso = 0;
+  grafo->directorio[vIni].anterior = 0;
+
+  for(i = 1; i <= grafo->orden; i++)
+  {
+    v = buscarVerticeCostoMinimoNoAlcanzado(grafo);
+    grafo->directorio[v].alcanzado++;
+    p = grafo->directorio[v].lista;
+
+    while(p != NULL)
+    {
+      w = p->v;
+
+      if(!grafo->directorio[w].alcanzado)
+        if(grafo->directorio[w].peso > p->peso)
+        {
+          grafo->directorio[w].peso = p->peso;
+          grafo->directorio[w].anterior = v;
+        }
+
+      p = p->sig;
+    }
+  }
+  return crearArbolDeExpansion(grafo);
+}
+
+tipoGrafo * prim(tipoGrafo *grafo)
+{
+  pArco p;
+	int i, v, w;
+	Monticulo m;
+	tipoElementoMonticulo x;
+	int vInicio = 1;
+
+	grafo->directorio[vInicio].peso = 0;
+  grafo->directorio[vInicio].anterior = 0;
+
+	iniciaMonticulo(&m);
+	x.clave = 0;
+	x.informacion.v = vInicio;
+	insertar( x, &m);
+
+	while (!vacioMonticulo(m)) {
+		eliminarMinimo(&m, &x);
+
+		if (!grafo->directorio[x.informacion.v].alcanzado) {
+			v = x.informacion.v;
+			grafo->directorio[v].alcanzado++;
+			p = grafo->directorio[v].lista;
+
+			while (p != NULL) {
+				w = p->v;
+
+				if (!grafo->directorio[w].alcanzado) {
+					if (p->peso < grafo->directorio[w].peso) {
+						grafo->directorio[w].peso = p->peso;
+						grafo->directorio[w].anterior = v;
+						x.clave = p->peso;
+						x.informacion.v = w;
+						insertar(x, &m);
+					}
+				}
+
+				p = p->sig;
+			}
+		}
+	}
+
+  return crearArbolDeExpansion(grafo);
+}
+
 /* Kruskal */
+void construirMonticuloDeAristas(tipoGrafo *grafo, Monticulo *m)
+{
+  int i;
+  pArco p;
+  tipoElementoMonticulo x;
+
+  iniciaMonticulo(m);
+
+  for (i = 1; i <= grafo->orden; i++)
+  {
+    p = grafo->directorio[i].lista;
+
+    while (p != NULL)
+    {
+      x.clave = p->peso;
+      x.informacion.v = i;
+      x.informacion.w = p->v;
+      insertar(x, m);
+      p = p->sig;
+    }
+  }
+}
+
 tipoGrafo * kruskal(tipoGrafo *grafo)
 {
+  Monticulo m;
+	int nAristasAceptadas = 0;
+	particion c;
+	tipoConjunto conjuntoV, conjuntoW;
+	tipoElementoMonticulo x;
+	tipoGrafo *arbolExp;
 
+  arbolExp = calloc(1, sizeof(tipoGrafo));
+	if (arbolExp == NULL)
+		return NULL;
+
+	arbolExp->orden = grafo->orden;
+
+	crea(c);
+	construirMonticuloDeAristas(grafo, &m);
+
+	while (nAristasAceptadas < grafo->orden - 1)
+  {
+		if (-1 == eliminarMinimo(&m, &x))
+    {
+			liberarListas(arbolExp);
+			free(arbolExp);
+			return NULL;
+		}
+
+		conjuntoV = buscar(x.informacion.v, c);
+		conjuntoW = buscar(x.informacion.w, c);
+
+		if (conjuntoV != conjuntoW)
+    {
+			unir(conjuntoV, conjuntoW, c);
+			nAristasAceptadas++;
+			aceptarArista(arbolExp, x);
+
+			if (arbolExp == NULL)
+				return NULL;
+		}
+	}
+
+  return arbolExp;
 }
