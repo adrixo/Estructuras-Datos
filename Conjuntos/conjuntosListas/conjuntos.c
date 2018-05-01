@@ -10,6 +10,7 @@ void crea(particion c){
 	for(i = 0; i<MAXIMO; i++){
 		c[i].primero = (tipoCelda *) calloc (1, sizeof(tipoCelda));
 		c[i].ultimo = c[i].primero;
+		c[i].primero->sig = NULL;
 		c[i].primero->elemento = i;
 	}
 }
@@ -32,7 +33,7 @@ tipoElemento buscar(tipoElemento x, particion c){
 }
 
 void unir(tipoElemento x, tipoElemento y, particion c){
-if(x != -1 && y != -1 && x != y){
+	if(x != -1 && y != -1 && x != y){
 		c[x].ultimo->sig = c[y].primero;
 		c[x].ultimo = c[y].ultimo;
 		c[y].primero = c[y].ultimo = NULL;
@@ -49,7 +50,7 @@ void verParticion(particion c)
      	aux = c[i].primero;
 
       if (aux!=NULL)
-			 	printf("\n\nClase de equivalencia representante %d: ",i);
+			 	printf("\nClase de equivalencia representante %d: ",i);
 
 	    while (aux!=NULL)
       {
@@ -59,11 +60,12 @@ void verParticion(particion c)
   }
 }
 
-void verClaseEquivalencia(tipoElemento x,particion c){
+void verClaseEquivalencia(tipoElemento x,particion c)
+{
 	int representante;
   tipoCelda *aux;
 
-    representante = buscar(x,&c);
+    representante = buscar(x,c);
     printf("\n\nClase de Equivalencia de %d cuyo representante es %d: ", x, representante);
     aux = c[representante].primero;
     while (aux)

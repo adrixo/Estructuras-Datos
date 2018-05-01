@@ -10,6 +10,9 @@ typedef int tipoElemento;
 void crea(particion C);
 tipoElemento buscar(tipoElemento x, particion C);
 void unir(tipoElemento x, tipoElemento y, particion C);
+void unirTamanno(tipoElemento x, tipoElemento y, particion c);
+
+void buscarComprensionCaminos(int x, particion c)
 
 void verParticion(particion C);
 #endif

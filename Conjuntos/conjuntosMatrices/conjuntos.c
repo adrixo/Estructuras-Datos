@@ -14,9 +14,10 @@ tipoElemento buscar(tipoElemento x, particion c){
 
 void unir(tipoElemento x, tipoElemento y, particion c){
 	int i;
+	tipoElemento aux = c[y];
 
 	for(i=0; i < MAXIMO ; i++)
-		if( c[i] == c[y])
+		if( c[i] == aux)
 			c[i] = c[x];
 }
 
@@ -42,7 +43,7 @@ void verParticion(particion c)
 void verClaseEquivalencia(tipoElemento x,particion c)
 {
 	int representante,i;
-	
+
   representante = buscar(x,c);
   printf("\n\nclase de Equivalencia de %d cuyo representante es %d: ", x,representante);
 

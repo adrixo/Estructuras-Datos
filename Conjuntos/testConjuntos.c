@@ -17,7 +17,7 @@ int main(){
   int aBuscar;
 
   crea(C);
-  printf("Situacion INICIAL: ");
+  printf("\nSituacion INICIAL: ");
   verParticion(C);
 
 // creamos los siguientes conjuntos:
@@ -39,7 +39,7 @@ int main(){
   unir(9,5,C);
 
 // Mostramos el resultado
-  printf("Situacion FINAL:   ");
+  printf("\n\nSituacion FINAL:   ");
   verParticion(C);
 
   printf("\nComprobar clase del elemento: ");
