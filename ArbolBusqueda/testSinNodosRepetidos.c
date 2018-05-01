@@ -26,13 +26,13 @@ int main(void)
   enOrden(a);
   encontrado = buscar(15,a, &buscado);
   if (encontrado)
-    printf("\nEncontrado nodo con clave %d e información %d \n", buscado->clave,buscado->info);
+    printf("\nEncontrado nodo con clave %d e información %d \n", buscado->clave, buscado->info);
   else
     printf("No existe nodo o error (%d) \n", encontrado);
 
   encontrado = buscar(100,a, &buscado);
   if (encontrado)
-    printf("\nEncontrado nodo con clave %d e información %d \n", buscado->clave,buscado->info);
+    printf("\nEncontrado nodo con clave %d e información %d \n", buscado->clave, buscado->info);
   else
     printf("No existe nodo o error(%d) \n", encontrado);
 

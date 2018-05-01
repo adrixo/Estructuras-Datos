@@ -9,8 +9,11 @@
 
 int insertar(tipoArbolBB *raiz,tipoClave clave)
 {
-	if (*raiz==NULL)
+	if (*raiz==NULL){
     *raiz = creaNodo(clave, 1);
+		if(*raiz == NULL)
+			return -1;
+	}
 
   else if (clave == (*raiz)->clave)
     ((*raiz)->info)++;
@@ -27,14 +30,22 @@ int insertar(tipoArbolBB *raiz,tipoClave clave)
 int buscar(tipoClave clave,tipoArbolBB raiz, tipoNodo **nodo)
 {
 	if (raiz==NULL)
-		return NULL;
+	{
+		*nodo = NULL;
+		return 0;
+	}
+
 	else if (clave == raiz->clave)
 		*nodo = raiz;
+
 	else if (clave < raiz->clave)
 		buscar(clave,raiz->izq,nodo);
+
 	else if (clave > raiz->clave)
 		buscar(clave,raiz->der,nodo);
-  return 1;
+
+	*nodo = raiz;
+  return raiz->info;
 }
 
 int eliminar(tipoArbolBB *raiz, tipoClave clave){
@@ -42,10 +53,13 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave){
 
   if (raiz == NULL)
     return 0;
+
   else if (clave < (*raiz)->clave)
     eliminar((*raiz)->izq, clave);
+
   else if (clave > (*raiz)->clave)
     eliminar((*raiz)->der, clave);
+
   else if (clave == (*raiz)->clave){
     aux = raiz;
     if(aux->der == NULL)
@@ -64,6 +78,7 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave){
       }
 
       *raiz = aux;
+
       if(ant == raiz)
         ant->izq = aux->izq;
       else
@@ -71,6 +86,7 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave){
     }
   }
   free(aux);
+	return 1;
 }
 #endif
 
@@ -80,18 +96,21 @@ int insertar(tipoArbolBB *raiz, tipoClave clave, tipoInfo info)
 {
   tipoNodo *nuevo, *aux;
 
-  if (*raiz==NULL)
+  if (*raiz==NULL){
     *raiz = creaNodo(clave, info);
+		if(*raiz == NULL)
+			return -1;
+		return 0;
+	}
 
   else if (clave == (*raiz)->clave)
   {
     nuevo = creaNodo(clave, info);
+		if(nuevo == NULL)
+			return -1;
 
     nuevo->izq = (*raiz)->izq;
-    nuevo->der = (*raiz)->der;
-
-    (*raiz)->der = NULL;
-    (*raiz)->izq = nuevo;
+		(*raiz)->izq = nuevo;
   }
 
   else if (clave < (*raiz)->clave)
@@ -107,19 +126,24 @@ int insertar(tipoArbolBB *raiz, tipoClave clave, tipoInfo info)
 int eliminar(tipoArbolBB *raiz, tipoClave clave)
 {
   tipoNodo *aux, *ant;
+	int nVeces = 0;
 
   if (raiz == NULL)
     return 0;
 
   else if (clave < (*raiz)->clave)
-    eliminar((*raiz)->izq, clave);
+    eliminar(&(*raiz)->izq, clave);
 
   else if (clave > (*raiz)->clave)
-    eliminar((*raiz)->der, clave);
+    eliminar(&(*raiz)->der, clave);
 
   else if (clave == (*raiz)->clave)
   {
-    aux = raiz;
+    aux = *raiz;
+
+		//while(){
+
+		//}
 
     if(aux->der == NULL)
       *raiz = aux->izq;
@@ -128,23 +152,29 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave)
       *raiz = aux->der;
 
     else //dos hijos
+		{
       ant = aux;
       aux = aux->izq;
 
-      while( aux->der == NULL )
+      while( aux->der != NULL )
       {
         ant = aux;
         aux = aux->der;
       }
-      *raiz = aux;
+      (*raiz)->clave = aux->clave;
+			strcpy((*raiz)->info,aux->info);
 
-      if(ant == raiz)
+
+      if(ant == *raiz)
         ant->izq = aux->izq;
 
       else
         ant->der = aux->der;
+		}
   }
+
   free(aux);
+	return nVeces;
 }
 
 #endif
@@ -152,25 +182,24 @@ int eliminar(tipoArbolBB *raiz, tipoClave clave)
 tipoNodo *creaNodo(tipoClave clave, tipoInfo info){
 
   tipoNodo * nuevo;
+
   nuevo = (tipoNodo *) malloc(sizeof(tipoNodo));
   if (nuevo == NULL)
 	 return NULL;
-  else
-  {
-    nuevo->clave = clave;
 
-  	#ifdef SINREPETIDOS
-      nuevo->info=info;
-  	#endif
+  nuevo->clave = clave;
 
-  	#ifdef CONREPETIDOS
-      strcpy(nuevo->info,info);
-  	#endif
+	#ifdef SINREPETIDOS
+    nuevo->info=info;
+	#endif
 
-  	nuevo->izq=NULL;
-  	nuevo->der=NULL;
-    return nuevo;
-  }
+	#ifdef CONREPETIDOS
+    strcpy(nuevo->info,info);
+	#endif
+
+	nuevo->izq=NULL;
+	nuevo->der=NULL;
+  return nuevo;
 }
 
 void preOrden(tipoArbolBB a){

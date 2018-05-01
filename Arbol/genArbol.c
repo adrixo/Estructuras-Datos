@@ -6,7 +6,7 @@
 #include "genArbol.h"
 
 Arbol genArbol(char *exPostfija){
-	
+
 	Pila pila;
 	pilaCreaVacia(&pila);
 
@@ -36,4 +36,3 @@ Arbol genArbol(char *exPostfija){
 	arbol = pilaSuprime(&pila);
 	return arbol;
 }
-
