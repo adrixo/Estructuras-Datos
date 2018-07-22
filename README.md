@@ -13,3 +13,21 @@ correspondientes carpetas.
 Agradecimientos a @xuzengmao por las funciones implementadas en grafos: prim y kruskal. Así como a Mª José Polo, nuestra profesora, por facilitarnos funciones y ejercicios.
 
 GITIGNORE: *.o y ejecutables *.TAD
+
+# Estructuras:
+
+### Arbol/Tree
+
+![Arbol](Arbol.png)
+
+### Montículo/Heap
+![Arbol](Monticulo.png)
+
+### Conjunto/Set
+![Arbol](Conjuntos.png)
+
+### Cola/Queue
+![Arbol](Cola.png)
+
+### Pila/Stack
+![Arbol](Pila.png)
